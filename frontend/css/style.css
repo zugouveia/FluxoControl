@@ -206,7 +206,6 @@ main {
 
 .tabela-clientes {
   width: 100%;
-  border-collapse: collapse;
 }
 
 .tabela-clientes thead {
@@ -278,6 +277,7 @@ main {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
 }
 
+/* Card de resumo com destaque (número maior) — Dashboard */
 .resumo-cartao-destaque .resumo-valor {
   font-size: 1.8rem;
 }
@@ -302,7 +302,7 @@ main {
   color: var(--cinza-texto);
 }
 
-/* Cor de números/ícones "isolados" (fora de badge) que representam um valor bom/ruim/de atenção — usado em Dashboard, Clientes, Serviços, Financeiro e Relatórios */
+/* Cor de números/ícones "isolados" (fora de badge) */
 .valor-positivo {
   color: var(--positivo-destaque);
 }
@@ -356,13 +356,12 @@ main {
   }
 }
 
-/* Select customizado — usado em qualquer select do site (filtros e campos de formulário): Serviços, Financeiro, Relatórios */
+/* Select customizado — usado em qualquer select do site (filtros e campos de formulário)*/
 .campo-select {
   padding: 8px 12px;
   border: 1px solid var(--cinza-borda);
   border-radius: var(--raio-padrao);
   font-size: var(--txt-aux);
-  cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -477,7 +476,6 @@ main {
   padding: 10px 20px;
   font-size: var(--txt-base);
   font-weight: 700;
-  cursor: pointer;
 }
 
 .btn-primary:hover {
@@ -490,7 +488,6 @@ main {
   border-radius: var(--raio-padrao);
   padding: 0.5rem 1rem;
   font-size: var(--txt-base);
-  cursor: pointer;
 }
 
 .alert-err {
@@ -503,12 +500,11 @@ main {
   margin-bottom: 1rem;
 }
 
-/* Ícones de ação nas tabelas (editar/excluir) — Clientes, Serviços, Financeiro */
+/* Ícones de ação nas tabelas (editar/excluir) */
 [title="Editar"],
 [title="Deletar"] {
   background: none;
   border: none;
-  cursor: pointer;
   padding: 5px;
 }
 
@@ -526,7 +522,7 @@ main {
   gap: 10px;
 }
 
-/* Etiquetas de status (select colorido nas tabelas) — Clientes e Serviços */
+/* Etiquetas de status (select colorido nas tabelas) */
 .status-servico-select,
 .status-cliente {
   appearance: none;
@@ -537,7 +533,6 @@ main {
   font-size: var(--txt-aux);
   font-weight: 700;
   border: none;
-  cursor: pointer;
 }
 
 .status-servico-select.pago,
@@ -767,7 +762,6 @@ main {
   color: var(--cinza-texto-claro);
   background: transparent;
   transition: all 0.2s;
-  cursor: pointer;
 }
 
 .auth-aba.ativa {
@@ -824,7 +818,6 @@ main {
   font-weight: 700;
   margin-top: 8px;
   margin-bottom: 16px;
-  cursor: pointer;
   transition: background-color 0.2s;
 }
 
@@ -883,7 +876,7 @@ main {
   font-size: 1.2rem;
 }
 
-/* Ícones do feed de "Atividade Recente" (escopados ao .atividade-icone para não vazar cor para o ícone do menu lateral que usa o mesmo ícone, ex: fa-sack-dollar) */
+/* Ícones do feed de "Atividade Recente"*/
 .atividade-icone .fa-user-plus {
   color: var(--marca-clara);
 }
