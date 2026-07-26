@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Clientes</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><strong>Fluxo</strong><span>Control</span></div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-gauge"></i>Dashboard</a>
+        <a href="clientes.html" class="sidebar-link ativo"><i class="fa-solid fa-users"></i>Clientes</a>
+        <a href="servicos.html" class="sidebar-link"><i class="fa-solid fa-briefcase"></i>Serviços</a>
+        <a href="financeiro.html" class="sidebar-link"><i class="fa-solid fa-sack-dollar"></i>Financeiro</a>
+        <a href="relatorio.html" class="sidebar-link"><i class="fa-solid fa-chart-column"></i>Relatórios</a>
+      </nav>
+      <button class="botao-logout">LOGOUT</button>
+    </aside>
+
+    <main class="dashboard">
+      <div class="dashboard-topo">
+        <div>
+          <h1 class="pagina-titulo">Clientes</h1>
+          <p class="pagina-subtitulo">Gerencie sua carteira de clientes</p>
+        </div>
+      </div>
+
+      <section class="resumo-grade">
+        <div class="resumo-cartao">
+          <p class="resumo-label">Total de Clientes</p>
+          <span class="resumo-valor">--</span>
+          <span class="resumo-detalhe">+X este mês</span>
+        </div>
+
+        <div class="resumo-cartao">
+          <p class="resumo-label">Clientes Ativos</p>
+          <span class="resumo-valor valor-positivo">--</span>
+          <span class="resumo-detalhe">X% da base</span>
+        </div>
+
+        <div class="resumo-cartao">
+          <p class="resumo-label">Receita Média</p>
+          <span class="resumo-valor">R$ --</span>
+          <span class="resumo-detalhe">Por cliente / mês</span>
+        </div>
+      </section>
+
+      <section class="dashboard-conteudo">
+
+        <div class="painel painel-lista">
+          <div class="painel-header">
+            <h2 class="painel-title">Lista de Clientes</h2>
+            <input type="search" id="campo-busca-clientes" class="input" placeholder="Buscar cliente...">
+          </div>
+
+          <div class="tabela-container">
+            <table class="tabela-clientes">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Telefone</th>
+                  <th>Serviços</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="coluna-acoes">
+
+          <section class="painel">
+            <h2 class="painel-title">Cadastrar novo cliente</h2>
+            <form class="form-cadastro">
+              <div class="campo campo-cheio">
+                <label>Nome Completo</label>
+                <input type="text" placeholder="Nome do cliente" required>
+              </div>
+
+              <div class="campo">
+                <label>Telefone</label>
+                <input type="tel" placeholder="(11) 99999-0000" required>
+              </div>
+
+              <div class="campo">
+                <label>E-mail</label>
+                <input type="email" placeholder="email@exemplo.com" required>
+              </div>
+
+              <div class="campo campo-cheio">
+                <label>Endereço</label>
+                <input type="text" placeholder="Rua, número, cidade" required>
+              </div>
+
+              <div class="form-botoes">
+                <button type="submit" class="btn-primary">Salvar</button>
+                <button type="button" class="btn-cancelar">Cancelar</button>
+              </div>
+            </form>
+          </section>
+
+          <section class="painel painel-historico">
+            <h2 class="painel-title">Histórico</h2>
+            <div class="historico-lista">
+              <span>Nenhum histórico disponível</span>
+            </div>
+          </section>
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/core.js"></script>
+  <script src="js/clientes.js"></script>
+</body>
+
+</html>

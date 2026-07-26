@@ -1,0 +1,86 @@
+/* ========================= CSS RESET ========================= */
+
+/* Box model e remoção de margens/paddings padrão */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Configurações básicas da página */
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--fundo-pagina);
+  color: var(--marca-escura);
+  font-family: dm-sans, sans-serif;
+}
+
+/* Títulos */
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Listas */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Formulários */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+/* Botões */
+button {
+  cursor: pointer;
+}
+
+/* Imagens */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Tabelas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Utilitários */
+.hidden {
+  display: none !important;
+}

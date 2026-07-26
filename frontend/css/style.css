@@ -1,0 +1,1287 @@
+/* VARIÁVEIS DE COR */
+:root {
+  /* ---- Marca ---- */
+  --marca-escura: #15125c; /* fundo do menu lateral, fundo da tela de login */
+  --marca-media: #6366f1; /* cor principal: botões, foco de campos, gráfico */
+  --marca-clara: #818cf8; /* destaque do logo, links e detalhes */
+  --marca-escura-hover: #4f46e5; /* hover do botão principal */
+  --marca-hover-auth: #4338ca; /* hover do botão de login/cadastro */
+  --marca-card-auth: #26244d; /* fundo do card de login */
+  --marca-borda-auth: #37336b; /* borda dos campos de login */
+  --marca-titulo: #25244c; /* título dos painéis (clientes, serviços...) */
+  --marca-titulo-pagina: #19183b; /* título grande do topo de cada página */
+  --marca-linha-hover: #f5f7ff; /* fundo ao passar o mouse numa linha de tabela */
+  --marca-borda-suave: #eef2ff; /* borda leve dos cards e painéis */
+
+  /* ---- Neutros ---- */
+  --branco: #ffffff;
+  --fundo-pagina: #f7f6f2;
+
+  /* Cinza */
+  --cinza-borda: #d1d5db51; /* toda borda, divisória, hover suave e placeholder */
+  --cinza-texto: #9ca3af; /* todo texto auxiliar/secundário (labels, datas, .muted) */
+
+  /* Cinza específico do menu lateral e da tela de login */
+  --cinza-texto-claro: #a0a9a3; /* texto secundário sobre fundo escuro */
+  --cinza-placeholder-escuro: #5a7a6a; /* placeholder dos campos de login */
+
+  /* STATUS */
+  /*Positivo (pago, ativo, lucro, receita) */
+  --positivo-texto: #166534; /* texto sobre fundo colorido (badge) */
+  --positivo-fundo: #d1fae5;
+  --positivo-destaque: #16a34a; /* número/ícone isolado sobre fundo branco */
+
+  /* Negativo (atrasado, inadimplente, despesa) */
+  --negativo-texto: #991b1b;
+  --negativo-fundo: #fee2e2;
+  --negativo-destaque: #ef4444;
+
+  /* Alerta (pendente) */
+  --alerta-texto: #854d0e;
+  --alerta-fundo: #fef9c3;
+  --alerta-destaque: #d97706;
+
+  /*Informativo (novo, ícone de editar) */
+  --informativo-texto: #1e40af;
+  --informativo-fundo: #dbeafe;
+  --informativo-destaque: #3498db;
+
+  /* Erro de formulário (próprio, separado do vermelho de status) */
+  --erro-texto: #dc2626;
+  --erro-fundo: #fef2f2;
+  --erro-borda: #fecaca;
+  --erro-suave: #f87171; /* texto de erro sobre fundo escuro (login) */
+
+  /* ---- Tipografia (tamanhos de texto pequeno/auxiliar do site inteiro;
+     títulos grandes continuam com valor próprio, não entram na escala) ---- */
+  --txt-micro: 0.625rem; /* legendas do gráfico */
+  --txt-rotulo: 0.7rem; /* rótulo em maiúsculo: cabeçalho de tabela, label de card/campo */
+  --txt-aux: 0.75rem; /* texto auxiliar/secundário */
+  --txt-base: 0.875rem; /* texto normal do corpo (célula de tabela, listas, subtítulos) */
+
+  /* ---- Cantos arredondados ---- */
+  --raio-padrao: 8px; /* botão, input, select, card pequeno */
+  --raio-card: 12px; /* painel, card de resumo */
+  --raio-grande: 16px; /* card de destaque (login) */
+  --raio-pilula: 9999px; /* badge e etiqueta de status */
+}
+
+/*  MENU LATERAL  */
+.app-shell {
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background-color: var(--marca-escura);
+  color: var(--branco);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+
+.sidebar-logo {
+  font-size: 1.3rem;
+  letter-spacing: -0.5px;
+  padding: 0 10px;
+  margin-bottom: 2rem;
+}
+
+.sidebar-logo strong {
+  color: var(--branco);
+}
+
+.sidebar-logo span {
+  color: var(--marca-clara);
+  font-weight: 700;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--cinza-texto-claro);
+  font-size: var(--txt-base);
+  font-weight: 500;
+  padding: 10px 12px;
+  border-radius: var(--raio-padrao);
+  transition: all 0.2s;
+}
+
+.sidebar-link i {
+  width: 18px;
+  text-align: center;
+  font-size: var(--txt-base);
+}
+
+.sidebar-link:hover {
+  color: var(--branco);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-link.ativo {
+  color: var(--branco);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.sidebar .botao-logout {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--branco);
+  padding: 10px 12px;
+  border-radius: var(--raio-padrao);
+  font-size: var(--txt-aux);
+  font-weight: 700;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.sidebar .botao-logout:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Parte principal de conteúdo (lado do menu lateral) */
+main,
+.wrap {
+  margin-left: 220px;
+  padding: 40px;
+}
+
+main {
+  padding: 40px;
+}
+
+/*  COMPONENTES COMPARTILHADOS 
+   Painel, tabela, campos de formulário, botões e etiquetas de status usados em várias páginas ficam aqui para não duplicar regras em cada página. */
+
+/* Painel (card branco com título) */
+.painel {
+  background: var(--branco);
+  border-radius: var(--raio-card);
+  border: 1px solid var(--marca-borda-suave);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.painel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.painel-title {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--marca-titulo);
+}
+
+.painel-largo {
+  grid-column: 1 / -1;
+}
+
+.dashboard-conteudo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Tabela padrão (header cinza claro + linhas com hover)*/
+.tabela-container {
+  overflow-x: auto;
+}
+
+.tabela-clientes {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabela-clientes thead {
+  background-color: var(--cinza-borda);
+}
+
+.tabela-clientes th {
+  text-align: left;
+  font-size: var(--txt-rotulo);
+  text-transform: uppercase;
+  color: var(--cinza-texto);
+  padding: 12px;
+  border-bottom: 1px solid var(--cinza-borda);
+}
+
+.tabela-clientes td {
+  padding: 16px 12px;
+  border-bottom: 1px solid var(--cinza-borda);
+  font-size: var(--txt-base);
+}
+
+.tabela-clientes tbody tr:hover {
+  background: var(--marca-linha-hover);
+}
+
+.linha-selecionada {
+  background-color: var(--marca-linha-hover);
+}
+
+.td-right {
+  text-align: right;
+}
+
+.td-center {
+  text-align: center;
+}
+
+.muted {
+  color: var(--cinza-texto);
+  font-size: var(--txt-aux);
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.cell-empty {
+  text-align: center;
+  color: var(--cinza-texto);
+}
+
+.tabela-clientes td.cell-empty {
+  padding: 2rem 1rem;
+}
+
+/* Cards de resumo (números grandes no topo) — Dashboard, Clientes, Serviços */
+.resumo-grade {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.resumo-cartao {
+  background: var(--branco);
+  padding: 10px 20px;
+  border-radius: var(--raio-card);
+  border: 1px solid var(--marca-borda-suave);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.resumo-cartao-destaque .resumo-valor {
+  font-size: 1.8rem;
+}
+
+.resumo-label {
+  font-size: var(--txt-rotulo);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--cinza-texto);
+  letter-spacing: 0.05em;
+}
+
+.resumo-valor {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 5px 0;
+}
+
+.resumo-detalhe {
+  font-size: var(--txt-aux);
+  color: var(--cinza-texto);
+}
+
+/* Cor de números/ícones "isolados" (fora de badge) que representam um valor bom/ruim/de atenção — usado em Dashboard, Clientes, Serviços, Financeiro e Relatórios */
+.valor-positivo {
+  color: var(--positivo-destaque);
+}
+
+.valor-negativo {
+  color: var(--negativo-destaque);
+}
+
+.valor-alerta {
+  color: var(--alerta-destaque);
+}
+
+/* Cabeçalho de página (título + ações à direita) */
+.dashboard-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+/* Título e subtítulo de página */
+.pagina-titulo {
+  font-size: 1.8rem;
+  color: var(--marca-titulo-pagina);
+  margin-bottom: 5px;
+}
+
+.pagina-subtitulo {
+  color: var(--cinza-texto);
+  font-size: var(--txt-base);
+  letter-spacing: 0.1rem;
+}
+
+.toolbar {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.grid-2 {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Select customizado — usado em qualquer select do site (filtros e campos de formulário): Serviços, Financeiro, Relatórios */
+.campo-select {
+  padding: 8px 12px;
+  border: 1px solid var(--cinza-borda);
+  border-radius: var(--raio-padrao);
+  font-size: var(--txt-aux);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 32px;
+  background-color: var(--branco);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px;
+}
+
+.campo-select:focus {
+  outline: none;
+  border-color: var(--marca-media);
+  box-shadow: 0 0 0 2px rgba(58, 166, 106, 0.2);
+}
+
+/* Campo de texto avulso, fora de um .campo (ex: campo de descrição de despesa quando não está dentro do formulário padrão) — Financeiro */
+.input {
+  border: 1px solid var(--cinza-borda);
+  border-radius: var(--raio-padrao);
+  padding: 8px 12px;
+  font-size: var(--txt-aux);
+  width: 100%;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--marca-media);
+  box-shadow: 0 0 0 2px rgba(58, 166, 106, 0.2);
+}
+
+/* Campo de formulário (rótulo + input) — Clientes, Serviços e Financeiro */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Grade de campos de um formulário — Serviços e Financeiro */
+.form-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.campo-cheio {
+  grid-column: span 2;
+}
+
+.campo label {
+  font-size: var(--txt-rotulo);
+  font-weight: 700;
+  color: var(--cinza-texto);
+  text-transform: uppercase;
+}
+
+.campo-opcional {
+  text-transform: none;
+  font-weight: 400;
+  color: var(--cinza-texto);
+}
+
+.campo input {
+  padding: 10px;
+  border: 1px solid var(--cinza-borda);
+  border-radius: var(--raio-padrao);
+  font-size: var(--txt-aux);
+}
+
+.campo input::placeholder {
+  color: var(--cinza-borda);
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.campo input:focus {
+  outline: none;
+  border-color: var(--marca-media);
+  box-shadow: 0 0 0 2px rgba(58, 166, 106, 0.2);
+}
+
+.form-botoes {
+  grid-column: span 2;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-cancelar {
+  background: var(--branco);
+  border: 1px solid var(--cinza-borda);
+  padding: 10px 20px;
+  border-radius: var(--raio-padrao);
+  font-weight: 700;
+}
+
+.btn-cancelar:hover {
+  background: var(--marca-linha-hover);
+}
+
+/* Botão de ação principal — usado em todas as páginas (Salvar, Registrar, +Novo Serviço, +Nova Despesa...) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--marca-media);
+  color: var(--branco);
+  border: none;
+  border-radius: var(--raio-padrao);
+  padding: 10px 20px;
+  font-size: var(--txt-base);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--marca-escura-hover);
+}
+
+.btn-ghost {
+  border: 1px solid var(--cinza-borda);
+  background: var(--branco);
+  border-radius: var(--raio-padrao);
+  padding: 0.5rem 1rem;
+  font-size: var(--txt-base);
+  cursor: pointer;
+}
+
+.alert-err {
+  background: var(--erro-fundo);
+  border: 1px solid var(--erro-borda);
+  color: var(--erro-texto);
+  border-radius: var(--raio-padrao);
+  padding: 0.75rem 1rem;
+  font-size: var(--txt-base);
+  margin-bottom: 1rem;
+}
+
+/* Ícones de ação nas tabelas (editar/excluir) — Clientes, Serviços, Financeiro */
+[title="Editar"],
+[title="Deletar"] {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.fa-trash-can {
+  color: var(--negativo-destaque);
+}
+
+.fa-pen-to-square {
+  color: var(--informativo-destaque);
+}
+
+.row-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Etiquetas de status (select colorido nas tabelas) — Clientes e Serviços */
+.status-servico-select,
+.status-cliente {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 5px 10px;
+  border-radius: var(--raio-pilula);
+  font-size: var(--txt-aux);
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.status-servico-select.pago,
+.status-cliente.ativo {
+  background: var(--positivo-fundo);
+  color: var(--positivo-texto);
+}
+
+.status-servico-select.pendente {
+  background: var(--alerta-fundo);
+  color: var(--alerta-texto);
+}
+
+.status-servico-select.atrasado,
+.status-cliente.inadimplente {
+  background: var(--negativo-fundo);
+  color: var(--negativo-texto);
+}
+
+.status-cliente.novo {
+  background: var(--informativo-fundo);
+  color: var(--informativo-texto);
+}
+
+/* Etiquetas de status (texto simples, geradas via JS) — Dashboard e
+   Clientes (histórico) */
+.status-pago {
+  display: block;
+  background: var(--positivo-fundo);
+  color: var(--positivo-texto);
+  font-size: var(--txt-rotulo);
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: var(--raio-pilula);
+  margin-top: 5px;
+}
+
+.status-pendente {
+  display: block;
+  background: var(--alerta-fundo);
+  color: var(--alerta-texto);
+  font-size: var(--txt-rotulo);
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: var(--raio-pilula);
+  margin-top: 5px;
+}
+
+.status-atrasado {
+  display: block;
+  background: var(--negativo-fundo);
+  color: var(--negativo-texto);
+  font-size: var(--txt-rotulo);
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: var(--raio-pilula);
+  margin-top: 5px;
+}
+
+/* Etiquetas de status (badge arredondado, gerado via montarSituacao()
+   em core.js) — usadas atualmente no Financeiro */
+.badge-pago,
+.badge-ativo {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.625rem;
+  border-radius: var(--raio-pilula);
+  font-size: var(--txt-aux);
+  font-weight: 500;
+  background: var(--positivo-fundo);
+  color: var(--positivo-texto);
+}
+
+.badge-pendente {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.625rem;
+  border-radius: var(--raio-pilula);
+  font-size: var(--txt-aux);
+  font-weight: 500;
+  background: var(--alerta-fundo);
+  color: var(--alerta-texto);
+}
+
+.badge-atrasado {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.625rem;
+  border-radius: var(--raio-pilula);
+  font-size: var(--txt-aux);
+  font-weight: 500;
+  background: var(--negativo-fundo);
+  color: var(--negativo-texto);
+}
+
+.badge-inadimplente {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.625rem;
+  border-radius: var(--raio-pilula);
+  font-size: var(--txt-aux);
+  font-weight: 500;
+  background: var(--negativo-fundo);
+  color: var(--negativo-texto);
+}
+
+.badge-novo {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.625rem;
+  border-radius: var(--raio-pilula);
+  font-size: var(--txt-aux);
+  font-weight: 500;
+  background: var(--informativo-fundo);
+  color: var(--informativo-texto);
+}
+
+.badge-inativo {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.625rem;
+  border-radius: var(--raio-pilula);
+  font-size: var(--txt-aux);
+  font-weight: 500;
+  background: var(--cinza-borda);
+  color: var(--cinza-texto);
+}
+
+/* LOGIN / CADASTRO */
+.pagina-auth {
+  background-color: var(--marca-escura);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  width: 100%;
+  max-width: 1100px;
+  padding: 40px;
+}
+
+.auth-esquerda {
+  color: var(--branco);
+  flex: 1;
+}
+
+.auth-logo {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.auth-descricao {
+  color: var(--cinza-texto-claro);
+  font-size: var(--txt-base);
+  margin-bottom: 32px;
+}
+
+.auth-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-lista li {
+  color: var(--cinza-texto-claro);
+  font-size: var(--txt-base);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-lista li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: var(--marca-clara);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.auth-direita {
+  flex: 1;
+  max-width: 440px;
+}
+
+.auth-card {
+  background-color: var(--marca-card-auth);
+  border-radius: var(--raio-grande);
+  padding: 36px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.auth-titulo {
+  color: var(--branco);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.auth-subtitulo {
+  color: var(--cinza-texto-claro);
+  font-size: var(--txt-aux);
+  margin-bottom: 24px;
+}
+
+.auth-abas {
+  display: flex;
+  background-color: var(--marca-escura);
+  border-radius: var(--raio-padrao);
+  padding: 4px;
+  margin-bottom: 24px;
+}
+
+.auth-aba {
+  flex: 1;
+  padding: 10px;
+  border-radius: var(--raio-padrao);
+  font-size: var(--txt-base);
+  font-weight: 500;
+  color: var(--cinza-texto-claro);
+  background: transparent;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.auth-aba.ativa {
+  background-color: var(--marca-clara);
+  color: var(--branco);
+  font-weight: 700;
+}
+
+.campo-auth {
+  margin-bottom: 14px;
+}
+
+.campo-label {
+  display: block;
+  font-size: var(--txt-aux);
+  color: var(--cinza-texto-claro);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.campo-input {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: var(--marca-escura);
+  border: 1px solid var(--marca-borda-auth);
+  border-radius: var(--raio-padrao);
+  color: var(--branco);
+  font-size: var(--txt-base);
+  transition: border-color 0.2s;
+}
+
+.campo-input::placeholder {
+  color: var(--cinza-placeholder-escuro);
+}
+
+.campo-input:focus {
+  outline: none;
+  border-color: var(--marca-clara);
+}
+
+.campos-lado-a-lado {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.btn-auth {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--marca-clara);
+  color: var(--branco);
+  border-radius: var(--raio-padrao);
+  font-weight: 700;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-auth:hover {
+  background-color: var(--marca-hover-auth);
+}
+
+.btn-auth:disabled {
+  background-color: var(--marca-borda-auth);
+  cursor: not-allowed;
+}
+
+.auth-link-texto {
+  text-align: center;
+  font-size: var(--txt-aux);
+  color: var(--cinza-texto-claro);
+}
+
+.auth-link-texto a {
+  color: var(--marca-clara);
+  font-weight: 600;
+}
+
+.auth-link-texto a:hover {
+  text-decoration: underline;
+}
+
+.auth-erro {
+  color: var(--erro-suave);
+  font-size: var(--txt-aux);
+  margin-bottom: 12px;
+  min-height: 20px;
+  text-align: center;
+}
+
+/* DASHBOARD */
+.resumo-grade-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.atividade-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--cinza-borda);
+  font-size: var(--txt-base);
+  color: var(--cinza-texto);
+}
+
+.atividade-item:last-child {
+  border-bottom: none;
+}
+
+.atividade-icone {
+  font-size: 1.2rem;
+}
+
+/* Ícones do feed de "Atividade Recente" (escopados ao .atividade-icone para não vazar cor para o ícone do menu lateral que usa o mesmo ícone, ex: fa-sack-dollar) */
+.atividade-icone .fa-user-plus {
+  color: var(--marca-clara);
+}
+
+.atividade-icone .fa-sack-dollar {
+  color: var(--alerta-destaque);
+}
+
+.atividade-icone .fa-clipboard-check {
+  color: var(--informativo-texto);
+}
+
+.atividade-icone .fa-angles-down {
+  color: var(--negativo-destaque);
+}
+
+.block-pad {
+  padding: 2rem 1.25rem;
+  margin: 0;
+  text-align: center;
+}
+
+/* CLIENTES */
+.coluna-acoes {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-cadastro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.historico-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--cinza-borda);
+}
+
+.historico-info h3 {
+  font-size: var(--txt-base);
+}
+
+.historico-info time {
+  font-size: var(--txt-aux);
+  color: var(--cinza-texto);
+}
+
+.historico-valores {
+  text-align: center;
+}
+
+.historico-lista span {
+  font-size: var(--txt-aux);
+  color: var(--cinza-texto);
+  margin-top: 15px;
+}
+
+/* SERVIÇOS */
+.resumo-grade-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.status-servico {
+  padding: 5px 15px;
+  border-radius: var(--raio-pilula);
+  font-size: var(--txt-aux);
+  font-weight: 700;
+  display: inline-block;
+}
+
+.status-servico.pago {
+  background: var(--positivo-fundo);
+  color: var(--positivo-texto);
+}
+
+.status-servico.pendente {
+  background: var(--alerta-fundo);
+  color: var(--alerta-texto);
+}
+
+.status-servico.atrasado {
+  background: var(--negativo-fundo);
+  color: var(--negativo-texto);
+}
+
+/* FINANCEIRO */
+.painel-despesa {
+  background: var(--branco);
+  border: 1px solid var(--marca-borda-suave);
+  border-radius: var(--raio-card);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+/* RELATÓRIOS */
+.chart-loading {
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cinza-texto);
+  font-size: var(--txt-base);
+}
+
+.chart-bars {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.bar-tip {
+  font-size: var(--txt-micro);
+  color: var(--cinza-texto);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  height: 1rem;
+}
+
+.bar-track-cima {
+  width: 100%;
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.bar-track-baixo {
+  width: 100%;
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.bar-zero {
+  width: 100%;
+  height: 1px;
+  background: var(--cinza-borda);
+}
+
+.bar-fill {
+  width: 100%;
+  min-height: 0;
+  background: var(--cinza-borda);
+}
+
+.bar-fill.bar-cima {
+  border-radius: 2px 2px 0 0;
+}
+
+.bar-fill.bar-baixo {
+  border-radius: 0 0 2px 2px;
+}
+
+.bar-fill.bar-verde {
+  background: var(--positivo-destaque);
+}
+
+.bar-fill.bar-vermelha {
+  background: var(--negativo-destaque);
+}
+
+.bar-m {
+  font-size: var(--txt-micro);
+  color: var(--cinza-texto);
+  margin-top: 0.35rem;
+}
+
+.chart-legenda {
+  display: flex;
+  gap: 1rem;
+  font-size: var(--txt-aux);
+  color: var(--cinza-texto);
+}
+
+.chart-legenda span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.legenda-cor {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.legenda-verde {
+  background: var(--positivo-destaque);
+}
+
+.legenda-vermelha {
+  background: var(--negativo-destaque);
+}
+
+.cli-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--cinza-borda);
+}
+
+.cli-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cli-num {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--raio-pilula);
+  background: var(--positivo-fundo);
+  color: var(--positivo-destaque);
+  font-size: var(--txt-micro);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cli-nome {
+  margin: 0;
+  font-size: var(--txt-base);
+  font-weight: 500;
+}
+
+.cli-sub {
+  margin: 0.125rem 0 0;
+  font-size: var(--txt-aux);
+  color: var(--cinza-texto);
+}
+
+.cli-total {
+  font-weight: 700;
+  font-size: var(--txt-base);
+  color: var(--positivo-destaque);
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+/* RESPONSIVIDADE */
+
+/* TABLET (até 1024px) */
+@media (max-width: 1024px) {
+  .resumo-grade-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-conteudo {
+    grid-template-columns: 1fr;
+  }
+
+  .campo-cheio {
+    grid-column: span 1;
+  }
+
+  .form-botoes {
+    grid-column: span 1;
+  }
+
+  .form-campos {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CELULAR (até 768px) */
+@media (max-width: 768px) {
+  .sidebar .botao-logout {
+    font-size: var(--txt-rotulo);
+    padding: 6px 12px;
+  }
+
+  main,
+  main.dashboard {
+    padding: 0 12px;
+  }
+
+  .painel {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .resumo-grade,
+  .resumo-grade-3,
+  .resumo-grade-4,
+  .dashboard-conteudo {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .dashboard-topo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .form-cadastro {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .campo-cheio {
+    grid-column: span 1;
+  }
+
+  .form-botoes {
+    grid-column: span 1;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .campo input,
+  .campo select,
+  .campo-input,
+  .campo-select {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .tabela-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
+
+  .form-campos {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+}
+
+/* IMPRESSÃO / "BAIXAR PDF" */
+/* Usa a função de imprimir do navegador — sem biblioteca externa. */
+.print-only {
+  display: none;
+}
+
+@media print {
+  .header,
+  .no-print,
+  .painel-despesa,
+  [title="Editar"],
+  [title="Deletar"] {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+    font-size: var(--txt-aux);
+    color: var(--cinza-texto);
+    margin: 0.25rem 0 0;
+  }
+
+  body {
+    background: var(--branco);
+  }
+
+  .wrap {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .resumo-cartao,
+  .painel,
+  .painel-despesa {
+    box-shadow: none !important;
+    border: 1px solid var(--cinza-borda) !important;
+  }
+
+  .resumo-grade,
+  .painel {
+    page-break-inside: avoid;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}

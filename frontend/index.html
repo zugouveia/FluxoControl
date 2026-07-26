@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FluxoControl</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="pagina-auth">
+
+  <div class="auth-container">
+
+    <div class="auth-esquerda">
+      <div class="logo auth-logo">
+        <strong>Fluxo</strong><span>Control</span>
+      </div>
+      <p class="auth-descricao">Gestão financeira para autônomos e MEIs</p>
+      <ul class="auth-lista">
+        <li>Controle de receitas e despesas</li>
+        <li>Cadastro de clientes e serviços</li>
+        <li>Relatórios financeiros por período</li>
+        <li>Controle de pagamentos pendentes</li>
+      </ul>
+    </div>
+
+    <div class="auth-direita">
+      <div class="auth-card">
+
+        <h1 class="auth-titulo">Bem-vindo</h1>
+        <p class="auth-subtitulo">Acesse sua conta ou crie uma nova</p>
+
+        <div class="auth-abas">
+          <button class="auth-aba ativa" id="aba-entrar">Entrar</button>
+          <button class="auth-aba" id="aba-cadastrar">Cadastrar</button>
+        </div>
+
+        <p class="auth-erro" id="auth-erro"></p>
+
+        <!-- Formulário de Login -->
+        <div id="form-login">
+          <div class="campo-auth">
+            <input type="email" id="login-email" class="campo-input" placeholder="E-mail" />
+          </div>
+          <div class="campo-auth">
+            <input type="password" id="login-senha" class="campo-input" placeholder="Senha" />
+          </div>
+          <button class="btn-auth" id="btn-entrar">Entrar na conta</button>
+          <p class="auth-link-texto">
+            Não tem uma conta?
+            <a href="#" id="link-para-cadastro">Cadastre-se</a>
+          </p>
+          <p class="auth-link-texto">
+            Esqueceu a senha? <a href="#" id="link-recuperar">Recuperar</a>
+          </p>
+        </div>
+
+        <!-- Formulário de Cadastro -->
+        <div id="form-cadastro" class="hidden">
+          <div class="campo-auth">
+            <label class="campo-label">Nome</label>
+            <input type="text" id="cadastro-nome" class="campo-input" placeholder="Nome" />
+          </div>
+          <div class="campo-auth">
+            <label class="campo-label">E-mail</label>
+            <input type="email" id="cadastro-email" class="campo-input" placeholder="E-mail" />
+          </div>
+          <div class="campo-auth">
+            <label class="campo-label">Senha</label>
+            <input type="password" id="cadastro-senha" class="campo-input" placeholder="Senha" />
+          </div>
+          <button class="btn-auth" id="btn-cadastrar">Criar conta</button>
+          <p class="auth-link-texto">
+            Já tem uma conta?
+            <a href="#" id="link-para-login">Faça login</a>
+          </p>
+        </div>
+
+        <!-- Formulário de Recuperação -->
+        <div id="form-recuperar" class="hidden">
+          <p class="auth-subtitulo">Digite seu e-mail e escolha uma nova senha para redefinir o acesso.</p>
+          <div class="campo-auth">
+            <input type="email" id="recuperar-email" class="campo-input" placeholder="E-mail" />
+          </div>
+          <div class="campo-auth">
+            <input type="password" id="recuperar-senha" class="campo-input" placeholder="Nova senha" />
+          </div>
+          <button class="btn-auth" id="btn-recuperar">Redefinir senha</button>
+          <p class="auth-link-texto">
+            Lembrou a senha? <a href="#" id="link-voltar-login">Voltar ao login</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/core.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>

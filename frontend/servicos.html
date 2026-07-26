@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serviços</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><strong>Fluxo</strong><span>Control</span></div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-gauge"></i>Dashboard</a>
+        <a href="clientes.html" class="sidebar-link"><i class="fa-solid fa-users"></i>Clientes</a>
+        <a href="servicos.html" class="sidebar-link ativo"><i class="fa-solid fa-briefcase"></i>Serviços</a>
+        <a href="financeiro.html" class="sidebar-link"><i class="fa-solid fa-sack-dollar"></i>Financeiro</a>
+        <a href="relatorio.html" class="sidebar-link"><i class="fa-solid fa-chart-column"></i>Relatórios</a>
+      </nav>
+      <button class="botao-logout">LOGOUT</button>
+    </aside>
+
+    <main class="dashboard">
+      <div class="dashboard-topo">
+        <div>
+          <h1 class="pagina-titulo">Serviços</h1>
+          <p class="pagina-subtitulo">Registre e acompanhe os serviços prestados</p>
+        </div>
+      </div>
+
+      <!-- Cards de resumo -->
+      <section class="resumo-grade resumo-grade-4">
+        <div class="resumo-cartao">
+          <p class="resumo-label">Serviços no Mês</p>
+          <span class="resumo-valor" id="total-servicos">--</span>
+          <span class="resumo-detalhe" id="detalhe-andamento">--</span>
+        </div>
+        <div class="resumo-cartao">
+          <p class="resumo-label">Receita Gerada</p>
+          <span class="resumo-valor valor-positivo" id="total-receita">--</span>
+          <span class="resumo-detalhe">Total de serviços</span>
+        </div>
+        <div class="resumo-cartao">
+          <p class="resumo-label">Ticket Médio</p>
+          <span class="resumo-valor" id="ticket-medio">--</span>
+          <span class="resumo-detalhe">Por serviço</span>
+        </div>
+        <div class="resumo-cartao">
+          <p class="resumo-label">Taxa de Pagamento</p>
+          <span class="resumo-valor valor-positivo" id="taxa-pagamento">--</span>
+          <span class="resumo-detalhe" id="detalhe-pagamento">--</span>
+        </div>
+      </section>
+
+      <section class="dashboard-conteudo">
+
+        <!-- Formulário -->
+        <div class="painel">
+          <h2 class="painel-title" id="titulo-form-servico">Registrar Novo Serviço</h2>
+          <form class="form-campos" id="form-servico">
+
+            <div class="campo campo-cheio">
+              <label>Cliente *</label>
+              <select id="select-cliente" class="campo-select" required>
+                <option value="">Selecione um cliente</option>
+              </select>
+            </div>
+
+            <div class="campo">
+              <label>Descrição *</label>
+              <input type="text" id="input-descricao" placeholder="Ex: Design logo" required>
+            </div>
+
+            <div class="campo campo-cheio">
+              <label>Evento</label>
+              <input type="text" id="input-evento" placeholder="Ex: Casamento Ana e João">
+            </div>
+
+            <div class="campo">
+              <label>Data Início</label>
+              <input type="date" id="input-data-inicio">
+            </div>
+
+            <div class="campo">
+              <label>Data Fim <span class="campo-opcional">(se for mais de um dia)</span></label>
+              <input type="date" id="input-data-fim">
+            </div>
+
+            <div class="campo">
+              <label>Valor Cobrado (R$) *</label>
+              <input type="number" id="input-valor" placeholder="0.00" step="0.01" required>
+            </div>
+
+            <div class="campo">
+              <label>Forma de Pagamento</label>
+              <select id="select-pagamento" class="campo-select">
+                <option value="PIX">PIX</option>
+                <option value="Transferência">Transferência</option>
+                <option value="Dinheiro">Dinheiro</option>
+                <option value="Cartão">Cartão</option>
+              </select>
+            </div>
+
+            <div class="campo campo-cheio">
+              <label>Status do Pagamento</label>
+              <select id="select-status" class="campo-select">
+                <option value="Pendente">Pendente</option>
+                <option value="Pago">Pago</option>
+                <option value="Atrasado">Atrasado</option>
+              </select>
+            </div>
+
+            <div class="form-botoes campo-cheio">
+              <button type="submit" class="btn-primary" id="btn-registrar">Registrar</button>
+              <button type="button" class="btn-cancelar" id="btn-limpar">Limpar</button>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Tabela de serviços -->
+        <div class="painel">
+          <div class="painel-header">
+            <h2 class="painel-title">Serviços Registrados</h2>
+            <select class="campo-select" id="filtro-status">
+              <option value="">Todos os status</option>
+              <option value="Pago">Pago</option>
+              <option value="Pendente">Pendente</option>
+              <option value="Atrasado">Atrasado</option>
+            </select>
+          </div>
+
+          <div class="tabela-container">
+            <table class="tabela-clientes">
+              <thead>
+                <tr>
+                  <th>Descrição</th>
+                  <th>Evento</th>
+                  <th>Cliente</th>
+                  <th>Data</th>
+                  <th>Valor</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tabela-servicos-body">
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script src="js/core.js"></script>
+  <script src="js/servicos.js"></script>
+</body>
+
+</html>

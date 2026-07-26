@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financeiro</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><strong>Fluxo</strong><span>Control</span></div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-gauge"></i>Dashboard</a>
+        <a href="clientes.html" class="sidebar-link"><i class="fa-solid fa-users"></i>Clientes</a>
+        <a href="servicos.html" class="sidebar-link"><i class="fa-solid fa-briefcase"></i>Serviços</a>
+        <a href="financeiro.html" class="sidebar-link ativo"><i class="fa-solid fa-sack-dollar"></i>Financeiro</a>
+        <a href="relatorio.html" class="sidebar-link"><i class="fa-solid fa-chart-column"></i>Relatórios</a>
+      </nav>
+      <button class="botao-logout">LOGOUT</button>
+    </aside>
+
+    <div class="wrap">
+      <div class="dashboard-topo">
+        <div>
+          <h1 class="pagina-titulo">Financeiro</h1>
+          <p class="pagina-subtitulo">Controle de receitas e despesas</p>
+          <p id="print-periodo" class="print-only"></p>
+        </div>
+        <div class="toolbar no-print">
+          <select id="filtro-mes" class="campo-select"></select>
+          <button type="button" id="btn-baixar-pdf" class="btn-ghost">⬇ Baixar PDF</button>
+          <button type="button" id="btn-nova-despesa" class="btn-primary">＋ Nova Despesa</button>
+        </div>
+      </div>
+
+      <div id="erro" class="alert-err hidden"></div>
+
+      <section class="resumo-grade resumo-grade-4">
+        <div class="resumo-cartao">
+          <p class="resumo-label">Receita</p>
+          <span id="kpi-receita" class="resumo-valor valor-positivo">—</span>
+          <span id="kpi-receita-sub" class="resumo-detalhe">—</span>
+        </div>
+        <div class="resumo-cartao">
+          <p class="resumo-label">Despesas</p>
+          <span id="kpi-despesas" class="resumo-valor valor-negativo">—</span>
+          <span id="kpi-despesas-sub" class="resumo-detalhe">—</span>
+        </div>
+        <div class="resumo-cartao">
+          <p class="resumo-label">Lucro líquido</p>
+          <span id="kpi-lucro" class="resumo-valor">—</span>
+          <span id="kpi-lucro-sub" class="resumo-detalhe">—</span>
+        </div>
+        <div class="resumo-cartao">
+          <p class="resumo-label">A receber</p>
+          <span id="kpi-pendente" class="resumo-valor valor-alerta">—</span>
+          <span id="kpi-pendente-sub" class="resumo-detalhe">—</span>
+        </div>
+      </section>
+
+      <div id="painel-despesa" class="painel-despesa hidden">
+        <div class="painel-header">
+          <h2 class="painel-title" id="painel-titulo">Nova despesa</h2>
+          <button type="button" id="btn-fechar-painel" class="btn-ghost" aria-label="Fechar">✕</button>
+        </div>
+        <form id="form-despesa">
+          <div class="form-campos">
+            <div class="campo campo-cheio">
+              <label for="d-desc">Descrição</label>
+              <input id="d-desc" type="text" required placeholder="Ex: Adobe, combustível" />
+            </div>
+            <div class="campo">
+              <label for="d-valor">Valor (R$)</label>
+              <input id="d-valor" type="number" min="0" step="0.01" required />
+            </div>
+            <div class="campo">
+              <label for="d-data">Data</label>
+              <input id="d-data" type="date" required />
+            </div>
+            <div class="campo">
+              <label for="d-cat">Categoria</label>
+              <select id="d-cat" class="campo-select">
+                <option>Transporte</option>
+                <option>Alimentação</option>
+                <option>Compras</option>
+                <option>Educação</option>
+                <option>MEI</option>
+                <option>outros</option>
+              </select>
+            </div>
+            <div class="form-botoes">
+              <button type="submit" class="btn-primary">Salvar</button>
+              <button type="button" id="btn-cancelar-despesa" class="btn-ghost">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="grid-2">
+        <div class="painel">
+          <div class="painel-header">
+            <h2 class="painel-title">Serviços</h2>
+          </div>
+          <div class="tabela-container">
+            <table id="tbl-servicos" class="tabela-clientes">
+              <thead>
+                <tr>
+                  <th>Cliente</th>
+                  <th>Serviço</th>
+                  <th>Evento</th>
+                  <th class="td-right">Valor</th>
+                  <th class="td-center">Situação</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="painel">
+          <div class="painel-header">
+            <h2 class="painel-title">Despesas</h2>
+          </div>
+          <div class="tabela-container">
+            <table id="tbl-despesas" class="tabela-clientes">
+              <thead>
+                <tr>
+                  <th>Descrição</th>
+                  <th>Data</th>
+                  <th>Categoria</th>
+                  <th class="td-right">Valor</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/core.js"></script>
+  <script src="js/financeiro.js"></script>
+</body>
+
+</html>
