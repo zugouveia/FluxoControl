@@ -3,7 +3,7 @@
  * (Railway, Render, etc.), troque só esta linha — todas as páginas usam
  * essa mesma constante.
  */
-const apiUrl = "http://localhost:5000";
+const apiUrl = "https://fluxocontrol.onrender.com";
 
 var chaveUsuarioId = "usuarioId";
 
