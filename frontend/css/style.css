@@ -1,29 +1,26 @@
 /* VARIÁVEIS DE COR */
 :root {
-  /* ---- Marca ---- */
+  /* Marca */
   --marca-escura: #15125c; /* fundo do menu lateral, fundo da tela de login */
   --marca-media: #6366f1; /* cor principal: botões, foco de campos, gráfico */
   --marca-clara: #818cf8; /* destaque do logo, links e detalhes */
   --marca-escura-hover: #4f46e5; /* hover do botão principal */
   --marca-hover-auth: #4338ca; /* hover do botão de login/cadastro */
-  --marca-card-auth: #26244d; /* fundo do card de login */
+  --marca-card-auth: #26244d7d; /* fundo do card de login */
   --marca-borda-auth: #37336b; /* borda dos campos de login */
   --marca-titulo: #25244c; /* título dos painéis (clientes, serviços...) */
   --marca-titulo-pagina: #19183b; /* título grande do topo de cada página */
   --marca-linha-hover: #f5f7ff; /* fundo ao passar o mouse numa linha de tabela */
   --marca-borda-suave: #eef2ff; /* borda leve dos cards e painéis */
 
-  /* ---- Neutros ---- */
+  /* Neutros */
   --branco: #ffffff;
   --fundo-pagina: #f7f6f2;
 
   /* Cinza */
   --cinza-borda: #d1d5db51; /* toda borda, divisória, hover suave e placeholder */
   --cinza-texto: #9ca3af; /* todo texto auxiliar/secundário (labels, datas, .muted) */
-
-  /* Cinza específico do menu lateral e da tela de login */
-  --cinza-texto-claro: #a0a9a3; /* texto secundário sobre fundo escuro */
-  --cinza-placeholder-escuro: #5a7a6a; /* placeholder dos campos de login */
+  --cinza-texto-secundario: #a0a9a3; /* texto secundário sobre fundo escuro */
 
   /* STATUS */
   /*Positivo (pago, ativo, lucro, receita) */
@@ -52,21 +49,20 @@
   --erro-borda: #fecaca;
   --erro-suave: #f87171; /* texto de erro sobre fundo escuro (login) */
 
-  /* ---- Tipografia (tamanhos de texto pequeno/auxiliar do site inteiro;
-     títulos grandes continuam com valor próprio, não entram na escala) ---- */
+  /* Tipografia */
   --txt-micro: 0.625rem; /* legendas do gráfico */
   --txt-rotulo: 0.7rem; /* rótulo em maiúsculo: cabeçalho de tabela, label de card/campo */
   --txt-aux: 0.75rem; /* texto auxiliar/secundário */
   --txt-base: 0.875rem; /* texto normal do corpo (célula de tabela, listas, subtítulos) */
 
-  /* ---- Cantos arredondados ---- */
+  /* Cantos arredondados */
   --raio-padrao: 8px; /* botão, input, select, card pequeno */
   --raio-card: 12px; /* painel, card de resumo */
   --raio-grande: 16px; /* card de destaque (login) */
   --raio-pilula: 9999px; /* badge e etiqueta de status */
 }
 
-/*  MENU LATERAL  */
+/* MENU LATERAL */
 .app-shell {
   min-height: 100vh;
 }
@@ -112,7 +108,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: var(--cinza-texto-claro);
+  color: var(--cinza-texto-secundario);
   font-size: var(--txt-base);
   font-weight: 500;
   padding: 10px 12px;
@@ -150,6 +146,7 @@
 .sidebar .botao-logout:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
+/* FIM MENU LATERAL */
 
 /* Parte principal de conteúdo (lado do menu lateral) */
 main,
@@ -162,8 +159,7 @@ main {
   padding: 40px;
 }
 
-/*  COMPONENTES COMPARTILHADOS 
-   Painel, tabela, campos de formulário, botões e etiquetas de status usados em várias páginas ficam aqui para não duplicar regras em cada página. */
+/* COMPONENTES COMPARTILHADOS (Painel, tabela, campos de formulário, botões e etiquetas de status usados em várias páginas)*/
 
 /* Painel (card branco com título) */
 .painel {
@@ -690,8 +686,17 @@ main {
   margin-bottom: 12px;
 }
 
+.auth-logo strong {
+  color: var(--branco);
+}
+
+.auth-logo span {
+  color: var(--marca-clara);
+  font-weight: 700;
+}
+
 .auth-descricao {
-  color: var(--cinza-texto-claro);
+  color: var(--cinza-texto-secundario);
   font-size: var(--txt-base);
   margin-bottom: 32px;
 }
@@ -704,7 +709,7 @@ main {
 }
 
 .auth-lista li {
-  color: var(--cinza-texto-claro);
+  color: var(--cinza-texto-secundario);
   font-size: var(--txt-base);
   display: flex;
   align-items: center;
@@ -740,7 +745,7 @@ main {
 }
 
 .auth-subtitulo {
-  color: var(--cinza-texto-claro);
+  color: var(--cinza-texto-secundario);
   font-size: var(--txt-aux);
   margin-bottom: 24px;
 }
@@ -759,7 +764,7 @@ main {
   border-radius: var(--raio-padrao);
   font-size: var(--txt-base);
   font-weight: 500;
-  color: var(--cinza-texto-claro);
+  color: var(--cinza-texto-secundario);
   background: transparent;
   transition: all 0.2s;
 }
@@ -777,7 +782,7 @@ main {
 .campo-label {
   display: block;
   font-size: var(--txt-aux);
-  color: var(--cinza-texto-claro);
+  color: var(--cinza-texto-secundario);
   margin-bottom: 6px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -795,7 +800,7 @@ main {
 }
 
 .campo-input::placeholder {
-  color: var(--cinza-placeholder-escuro);
+  color: var(--cinza-texto-secundario);
 }
 
 .campo-input:focus {
@@ -833,7 +838,7 @@ main {
 .auth-link-texto {
   text-align: center;
   font-size: var(--txt-aux);
-  color: var(--cinza-texto-claro);
+  color: var(--cinza-texto);
 }
 
 .auth-link-texto a {

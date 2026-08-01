@@ -19,6 +19,13 @@ function definirSaudacao() {
     saudacao = "Boa noite";
   }
 
+  const nome = (localStorage.getItem("usuarioNome") || "").trim();
+  const primeiroNome = nome ? nome.split(" ")[0] : "";
+
+  if (primeiroNome) {
+    saudacao += ", " + primeiroNome;
+  }
+
   document.getElementById("saudacao").textContent = saudacao + "!";
 
   const agora = new Date();
