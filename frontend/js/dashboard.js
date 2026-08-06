@@ -215,8 +215,48 @@ function atualizarCards(dadosFinanceiro) {
   document.getElementById("card-pendentes").textContent =
     formatarMoeda(pendente);
   document.getElementById("card-pendentes-detalhe").textContent =
-    clientesPendentes + " cliente(s) em atraso";
+    clientesPendentes + " cliente(s) pendentes";
 }
+
+//Clicar nos cards vai para a pagina do local
+
+//despesas
+document
+  .getElementById("card-despesas-container")
+  .addEventListener("click", function () {
+    window.location.href = "financeiro.html";
+  });
+
+//pendentes
+/*document
+  .getElementById("card-pendentes-container")
+  .addEventListener("click", function () {
+    window.location.href = "servicos.html";
+  });*/
+
+document
+  .getElementById("card-pendentes-container")
+  .addEventListener("click", function () {
+    window.location.href = "servicos.html?status=Pendente";
+  });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const statusParam = urlParams.get("status");
+
+  if (statusParam === "pendente") {
+    const selectStatus = document.getElementById("select-status-filtro"); // ajuste o ID para o seu select
+    if (selectStatus) {
+      selectStatus.value = "pendente";
+    }
+    filtrarPorStatus("pendente");
+
+    const tabelaContainer = document.querySelector(".tabela-container");
+    if (tabelaContainer) {
+      tabelaContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+});
 
 //SERVICOS RECENTES
 function renderizarServicosRecentes(servicos) {

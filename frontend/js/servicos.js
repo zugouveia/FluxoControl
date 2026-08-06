@@ -24,13 +24,17 @@ let servicoEditandoId = null;
 function formatarPeriodoServico(servico) {
   if (!servico.dataInicio) return "—";
 
-  const inicio = new Date(servico.dataInicio).toLocaleDateString("pt-BR", { timeZone: "UTC" });
+  const inicio = new Date(servico.dataInicio).toLocaleDateString("pt-BR", {
+    timeZone: "UTC",
+  });
 
   if (!servico.dataFim || servico.dataFim === servico.dataInicio) {
     return inicio;
   }
 
-  const fim = new Date(servico.dataFim).toLocaleDateString("pt-BR", { timeZone: "UTC" });
+  const fim = new Date(servico.dataFim).toLocaleDateString("pt-BR", {
+    timeZone: "UTC",
+  });
   if (fim === inicio) return inicio;
 
   return inicio + " – " + fim;
@@ -83,7 +87,9 @@ function atualizarCards(servicos) {
   document.getElementById("total-receita").textContent = formatarMoeda(receita);
 
   if (total > 0) {
-    document.getElementById("ticket-medio").textContent = formatarMoeda(receita / total);
+    document.getElementById("ticket-medio").textContent = formatarMoeda(
+      receita / total,
+    );
   } else {
     document.getElementById("ticket-medio").textContent = formatarMoeda(0);
   }
@@ -207,7 +213,9 @@ function renderizarServicos(servicos) {
   document.querySelectorAll(".btn-deletar-servico").forEach(function (btn) {
     btn.addEventListener("click", async function () {
       if (!confirm("Tem certeza que deseja excluir este serviço?")) return;
-      await chamarApi(CAMINHO_SERVICOS + "/" + btn.dataset.id, { method: "DELETE" });
+      await chamarApi(CAMINHO_SERVICOS + "/" + btn.dataset.id, {
+        method: "DELETE",
+      });
       carregarServicos();
     });
   });
@@ -322,11 +330,15 @@ async function atualizarStatusServico(id, novoStatus) {
 }
 
 //FILTRO
-document.getElementById("card-atrasados").addEventListener("click", function () {
-  filtroStatus.value = "Atrasado";
-  filtroStatus.dispatchEvent(new Event("change"));
-  document.querySelector(".tabela-container").scrollIntoView({ behavior: "smooth", block: "start" });
-});
+document
+  .getElementById("card-atrasados")
+  .addEventListener("click", function () {
+    filtroStatus.value = "Atrasado";
+    filtroStatus.dispatchEvent(new Event("change"));
+    document
+      .querySelector(".tabela-container")
+      .scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 
 filtroStatus.addEventListener("change", function () {
   const filtro = filtroStatus.value;
@@ -348,6 +360,31 @@ btnLimpar.addEventListener("click", function () {
   resetarFormServico();
 });
 
-//INICIAR
-carregarClientesSelect();
-carregarServicos();
+// Função para verificar se veio algum status pela URL e aplicar o filtro
+function aplicarFiltroUrl() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const statusUrl = urlParams.get("status");
+
+  if (statusUrl) {
+    const statusFormatado =
+      statusUrl.charAt(0).toUpperCase() + statusUrl.slice(1).toLowerCase();
+
+    filtroStatus.value = statusFormatado;
+
+    filtroStatus.dispatchEvent(new Event("change"));
+
+    const tabelaContainer = document.querySelector(".tabela-container");
+    if (tabelaContainer) {
+      tabelaContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+}
+
+// INICIAR (Atualizado)
+async function inicializarPagina() {
+  await carregarClientesSelect();
+  await carregarServicos();
+  aplicarFiltroUrl();
+}
+
+inicializarPagina();
