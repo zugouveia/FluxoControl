@@ -1,3 +1,64 @@
+/* VARIÁVEIS DE COR */
+:root {
+  /* Marca */
+  --marca-escura: #15125c; /* fundo do menu lateral, fundo da tela de login */
+  --marca-media: #6366f1; /* cor principal: botões, foco de campos, gráfico */
+  --marca-clara: #818cf8; /* destaque do logo, links e detalhes */
+  --marca-escura-hover: #4f46e5; /* hover de botão */
+  --marca-card-auth: #26244d7d; /* fundo do card de login */
+  --marca-borda-auth: #37336b; /* borda dos campos de login */
+  --marca-titulo: #25244c; /* título*/
+  --marca-linha-hover: #f5f7ff; /* fundo ao passar o mouse numa linha de tabela */
+
+  /* Neutros */
+  --branco: #ffffff;
+  --fundo-pagina: #f7f6f2;
+
+  /* Cinza */
+  --cinza-borda: #d1d5db51; /* toda borda, divisória, hover suave e placeholder */
+  --cinza-texto: #9ca3af; /* todo texto auxiliar/secundário (labels, datas, .muted) */
+  --cinza-texto-secundario: #a0a9a3; /* texto secundário sobre fundo escuro */
+
+  /* STATUS */
+  /*Positivo (pago, ativo, lucro, receita) */
+  --positivo-texto: #166534; /* texto sobre fundo colorido (badge) */
+  --positivo-fundo: #d1fae5;
+  --positivo-destaque: #16a34a; /* número/ícone isolado sobre fundo branco */
+
+  /* Negativo (atrasado, inadimplente, despesa) */
+  --negativo-texto: #991b1b;
+  --negativo-fundo: #fee2e2;
+  --negativo-destaque: #ef4444;
+
+  /* Alerta (pendente) */
+  --alerta-texto: #854d0e;
+  --alerta-fundo: #fef9c3;
+  --alerta-destaque: #d97706;
+
+  /*Informativo (novo, ícone de editar) */
+  --informativo-texto: #1e40af;
+  --informativo-fundo: #dbeafe;
+  --informativo-destaque: #3498db;
+
+  /* Erro de formulário (próprio, separado do vermelho de status) */
+  --erro-texto: #dc2626;
+  --erro-fundo: #fef2f2;
+  --erro-borda: #fecaca;
+  --erro-suave: #f87171; /* texto de erro sobre fundo escuro (login) */
+
+  /* Tipografia */
+  --txt-micro: 0.625rem; /* legendas do gráfico */
+  --txt-rotulo: 0.7rem; /* rótulo em maiúsculo: cabeçalho de tabela, label de card/campo */
+  --txt-aux: 0.75rem; /* texto auxiliar/secundário */
+  --txt-base: 0.875rem; /* texto normal do corpo (célula de tabela, listas, subtítulos) */
+
+  /* Cantos arredondados */
+  --raio-padrao: 8px; /* botão, input, select, card pequeno */
+  --raio-card: 12px; /* painel, card de resumo */
+  --raio-grande: 16px; /* card de destaque (login) */
+  --raio-pilula: 9999px; /* badge e etiqueta de status */
+}
+
 /* CSS RESET */
 
 /* Box model e remoção de margens/paddings padrão */

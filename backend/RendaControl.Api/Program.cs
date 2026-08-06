@@ -3,8 +3,6 @@ using RendaControl.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Em produção (Railway) a connection string vem pela env var DATABASE_URL.
-// Localmente, cai para o appsettings.json (ConnectionStrings:DefaultConnection).
 var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
 string connectionString;
 
@@ -25,7 +23,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddCors();
 builder.Services.AddControllers();
 
-// Mantém o comportamento antigo do Npgsql para DateTime sem timezone (usado em Servico.DataInicio/DataFim).
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var app = builder.Build();

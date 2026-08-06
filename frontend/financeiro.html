@@ -12,6 +12,7 @@
 
 <body>
   <div class="app-shell">
+    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-logo"><strong>Fluxo</strong><span>Control</span></div>
       <nav class="sidebar-nav">
@@ -24,16 +25,16 @@
       <button class="botao-logout">LOGOUT</button>
     </aside>
 
-    <div class="wrap">
+    <!-- CONTEUDO PRINCIPAL -->
+    <main class="dashboard">
       <div class="dashboard-topo">
         <div>
           <h1 class="pagina-titulo">Financeiro</h1>
           <p class="pagina-subtitulo">Controle de receitas e despesas</p>
-          <p id="print-periodo" class="print-only"></p>
         </div>
         <div class="toolbar no-print">
+          <label for="filtro-mes" class="rotulo-filtro">Ver mês:</label>
           <select id="filtro-mes" class="campo-select"></select>
-          <!-- <button type="button" id="btn-baixar-pdf" class="btn-ghost">⬇ Baixar PDF</button> -->
           <button type="button" id="btn-nova-despesa" class="btn-primary">＋ Nova Despesa</button>
         </div>
       </div>
@@ -91,7 +92,10 @@
                 <option>Educação</option>
                 <option>MEI</option>
                 <option>outros</option>
+                <option value="__nova__">＋ Criar nova categoria...</option>
               </select>
+              <input type="text" id="d-cat-nova" class="input hidden" placeholder="Nome da nova categoria"
+                style="margin-top: 8px;" />
             </div>
             <div class="form-botoes">
               <button type="submit" class="btn-primary">Salvar</button>
@@ -141,8 +145,8 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
+  </main>
 
   <script src="js/core.js"></script>
   <script src="js/financeiro.js"></script>

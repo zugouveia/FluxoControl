@@ -62,7 +62,7 @@ function atualizarCards(clientes, todosServicos) {
     ".resumo-grade .resumo-cartao:nth-child(2) .resumo-detalhe",
   ).textContent = percentAtivos + "% da base";
 
-  // Card 3 - Receita Média
+  // Card 3 - Receita por Cliente
   const servicosPagos = todosServicos.filter(function (s) {
     return s.status === "Pago";
   });
@@ -85,7 +85,33 @@ function atualizarCards(clientes, todosServicos) {
   document.querySelector(
     ".resumo-grade .resumo-cartao:nth-child(3) .resumo-detalhe",
   ).textContent = "Por cliente / mês";
+
+  const inadimplentes = clientes.filter(function (c) {
+    return c.status === "Inadimplente";
+  }).length;
+
+  document.getElementById("total-inadimplentes").textContent = inadimplentes;
 }
+
+//FILTRAR TABELA POR STATUS (usado pelo card de Inadimplentes)
+function filtrarPorStatus(status) {
+  document.querySelectorAll(".tabela-clientes tbody tr").forEach(function (linha) {
+    const selectStatus = linha.querySelector(".status-cliente");
+    if (!selectStatus) return;
+
+    if (!status || selectStatus.classList.contains(status.toLowerCase())) {
+      linha.style.display = "";
+    } else {
+      linha.style.display = "none";
+    }
+  });
+}
+
+document.getElementById("card-inadimplentes").addEventListener("click", function () {
+  campoBusca.value = "";
+  filtrarPorStatus("inadimplente");
+  document.querySelector(".tabela-container").scrollIntoView({ behavior: "smooth", block: "start" });
+});
 
 //RENDERIZAR TABELA
 function renderizarClientes(clientes, todosServicos) {

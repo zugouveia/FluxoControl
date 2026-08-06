@@ -1,8 +1,3 @@
-/**
- * Endereço único da API (.NET) unificada. Depois de publicar o backend
- * (Railway, Render, etc.), troque só esta linha — todas as páginas usam
- * essa mesma constante.
- */
 const apiUrl = "https://fluxocontrol.onrender.com";
 
 var chaveUsuarioId = "usuarioId";

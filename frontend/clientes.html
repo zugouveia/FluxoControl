@@ -11,8 +11,8 @@
 </head>
 
 <body>
-
   <div class="app-shell">
+    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-logo"><strong>Fluxo</strong><span>Control</span></div>
       <nav class="sidebar-nav">
@@ -25,31 +25,38 @@
       <button class="botao-logout">LOGOUT</button>
     </aside>
 
+    <!-- CONTEUDO PRINCIPAL -->
     <main class="dashboard">
       <div class="dashboard-topo">
         <div>
           <h1 class="pagina-titulo">Clientes</h1>
-          <p class="pagina-subtitulo">Gerencie sua carteira de clientes</p>
+          <p class="pagina-subtitulo">Gerencie seus clientes</p>
         </div>
       </div>
 
-      <section class="resumo-grade">
+      <section class="resumo-grade resumo-grade-4">
         <div class="resumo-cartao">
           <p class="resumo-label">Total de Clientes</p>
-          <span class="resumo-valor">--</span>
+          <span class="resumo-valor">—</span>
           <span class="resumo-detalhe">+X este mês</span>
         </div>
 
         <div class="resumo-cartao">
           <p class="resumo-label">Clientes Ativos</p>
-          <span class="resumo-valor valor-positivo">--</span>
+          <span class="resumo-valor valor-positivo">—</span>
           <span class="resumo-detalhe">X% da base</span>
         </div>
 
         <div class="resumo-cartao">
-          <p class="resumo-label">Receita Média</p>
-          <span class="resumo-valor">R$ --</span>
+          <p class="resumo-label">Receita por Cliente</p>
+          <span class="resumo-valor">—</span>
           <span class="resumo-detalhe">Por cliente / mês</span>
+        </div>
+
+        <div class="resumo-cartao resumo-cartao-clicavel" id="card-inadimplentes">
+          <p class="resumo-label">Clientes Inadimplentes</p>
+          <span class="resumo-valor valor-negativo" id="total-inadimplentes">—</span>
+          <span class="resumo-detalhe">Clique para ver</span>
         </div>
       </section>
 

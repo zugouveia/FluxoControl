@@ -6,8 +6,6 @@ namespace RendaControl.Api.Models;
 public class Despesa
 {
     public Guid Id { get; set; }
-
-    // Mesmo padrão usado em Cliente/Servico: Id do Usuario dono do registro.
     public int UsuarioId { get; set; }
 
     public string Descricao { get; set; } = string.Empty;
@@ -16,6 +14,5 @@ public class Despesa
 
     public DateOnly Data { get; set; }
 
-    // materiais, software, transporte, marketing, alimentacao, outros
     public string Categoria { get; set; } = "outros";
 }

@@ -8,8 +8,6 @@ public class Cliente
 {
     [Key]
     public int Id { get; set; }
-
-    // Dono do registro (Id do Usuario). Garante que cada usuária só veja os próprios clientes.
     public int UsuarioId { get; set; }
 
     [Required(ErrorMessage = "Informe o nome")]

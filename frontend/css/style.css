@@ -1,67 +1,3 @@
-/* VARIÁVEIS DE COR */
-:root {
-  /* Marca */
-  --marca-escura: #15125c; /* fundo do menu lateral, fundo da tela de login */
-  --marca-media: #6366f1; /* cor principal: botões, foco de campos, gráfico */
-  --marca-clara: #818cf8; /* destaque do logo, links e detalhes */
-  --marca-escura-hover: #4f46e5; /* hover do botão principal */
-  --marca-hover-auth: #4338ca; /* hover do botão de login/cadastro */
-  --marca-card-auth: #26244d7d; /* fundo do card de login */
-  --marca-borda-auth: #37336b; /* borda dos campos de login */
-  --marca-titulo: #25244c; /* título dos painéis (clientes, serviços...) */
-  --marca-titulo-pagina: #19183b; /* título grande do topo de cada página */
-  --marca-linha-hover: #f5f7ff; /* fundo ao passar o mouse numa linha de tabela */
-  --marca-borda-suave: #eef2ff; /* borda leve dos cards e painéis */
-
-  /* Neutros */
-  --branco: #ffffff;
-  --fundo-pagina: #f7f6f2;
-
-  /* Cinza */
-  --cinza-borda: #d1d5db51; /* toda borda, divisória, hover suave e placeholder */
-  --cinza-texto: #9ca3af; /* todo texto auxiliar/secundário (labels, datas, .muted) */
-  --cinza-texto-secundario: #a0a9a3; /* texto secundário sobre fundo escuro */
-
-  /* STATUS */
-  /*Positivo (pago, ativo, lucro, receita) */
-  --positivo-texto: #166534; /* texto sobre fundo colorido (badge) */
-  --positivo-fundo: #d1fae5;
-  --positivo-destaque: #16a34a; /* número/ícone isolado sobre fundo branco */
-
-  /* Negativo (atrasado, inadimplente, despesa) */
-  --negativo-texto: #991b1b;
-  --negativo-fundo: #fee2e2;
-  --negativo-destaque: #ef4444;
-
-  /* Alerta (pendente) */
-  --alerta-texto: #854d0e;
-  --alerta-fundo: #fef9c3;
-  --alerta-destaque: #d97706;
-
-  /*Informativo (novo, ícone de editar) */
-  --informativo-texto: #1e40af;
-  --informativo-fundo: #dbeafe;
-  --informativo-destaque: #3498db;
-
-  /* Erro de formulário (próprio, separado do vermelho de status) */
-  --erro-texto: #dc2626;
-  --erro-fundo: #fef2f2;
-  --erro-borda: #fecaca;
-  --erro-suave: #f87171; /* texto de erro sobre fundo escuro (login) */
-
-  /* Tipografia */
-  --txt-micro: 0.625rem; /* legendas do gráfico */
-  --txt-rotulo: 0.7rem; /* rótulo em maiúsculo: cabeçalho de tabela, label de card/campo */
-  --txt-aux: 0.75rem; /* texto auxiliar/secundário */
-  --txt-base: 0.875rem; /* texto normal do corpo (célula de tabela, listas, subtítulos) */
-
-  /* Cantos arredondados */
-  --raio-padrao: 8px; /* botão, input, select, card pequeno */
-  --raio-card: 12px; /* painel, card de resumo */
-  --raio-grande: 16px; /* card de destaque (login) */
-  --raio-pilula: 9999px; /* badge e etiqueta de status */
-}
-
 /* MENU LATERAL */
 .app-shell {
   min-height: 100vh;
@@ -148,14 +84,9 @@
 }
 /* FIM MENU LATERAL */
 
-/* Parte principal de conteúdo (lado do menu lateral) */
-main,
-.wrap {
-  margin-left: 220px;
-  padding: 40px;
-}
-
+/* CONTEUDO PRINCIPAL */
 main {
+  margin-left: 220px;
   padding: 40px;
 }
 
@@ -165,7 +96,6 @@ main {
 .painel {
   background: var(--branco);
   border-radius: var(--raio-card);
-  border: 1px solid var(--marca-borda-suave);
   padding: 24px;
   margin-bottom: 20px;
 }
@@ -269,7 +199,6 @@ main {
   background: var(--branco);
   padding: 10px 20px;
   border-radius: var(--raio-card);
-  border: 1px solid var(--marca-borda-suave);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
 }
 
@@ -324,7 +253,7 @@ main {
 /* Título e subtítulo de página */
 .pagina-titulo {
   font-size: 1.8rem;
-  color: var(--marca-titulo-pagina);
+  color: var(--marca-titulo);
   margin-bottom: 5px;
 }
 
@@ -339,6 +268,19 @@ main {
   gap: 0.75rem;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.rotulo-filtro {
+  font-size: var(--txt-aux);
+  color: var(--cinza-texto);
+  font-weight: 600;
+}
+
+.rotulo-filtro {
+  font-size: var(--txt-aux);
+  font-weight: 600;
+  color: var(--cinza-texto);
+  white-space: nowrap;
 }
 
 .grid-2 {
@@ -367,12 +309,6 @@ main {
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 14px;
-}
-
-.campo-select:focus {
-  outline: none;
-  border-color: var(--marca-media);
-  box-shadow: 0 0 0 2px rgba(58, 166, 106, 0.2);
 }
 
 /* Campo de texto avulso, fora de um .campo (ex: campo de descrição de despesa quando não está dentro do formulário padrão) — Financeiro */
@@ -460,7 +396,7 @@ main {
   background: var(--marca-linha-hover);
 }
 
-/* Botão de ação principal — usado em todas as páginas (Salvar, Registrar, +Novo Serviço, +Nova Despesa...) */
+/* Botão de ação */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -553,7 +489,7 @@ main {
   color: var(--informativo-texto);
 }
 
-/* Etiquetas de status (texto simples, geradas via JS) — Dashboard e
+/* Etiquetas de status (geradas via JS) — Dashboard e
    Clientes (histórico) */
 .status-pago {
   display: block;
@@ -597,7 +533,7 @@ main {
   padding: 0.125rem 0.625rem;
   border-radius: var(--raio-pilula);
   font-size: var(--txt-aux);
-  font-weight: 500;
+  font-weight: 700;
   background: var(--positivo-fundo);
   color: var(--positivo-texto);
 }
@@ -608,7 +544,7 @@ main {
   padding: 0.125rem 0.625rem;
   border-radius: var(--raio-pilula);
   font-size: var(--txt-aux);
-  font-weight: 500;
+  font-weight: 700;
   background: var(--alerta-fundo);
   color: var(--alerta-texto);
 }
@@ -619,7 +555,7 @@ main {
   padding: 0.125rem 0.625rem;
   border-radius: var(--raio-pilula);
   font-size: var(--txt-aux);
-  font-weight: 500;
+  font-weight: 700;
   background: var(--negativo-fundo);
   color: var(--negativo-texto);
 }
@@ -630,7 +566,7 @@ main {
   padding: 0.125rem 0.625rem;
   border-radius: var(--raio-pilula);
   font-size: var(--txt-aux);
-  font-weight: 500;
+  font-weight: 700;
   background: var(--negativo-fundo);
   color: var(--negativo-texto);
 }
@@ -641,7 +577,7 @@ main {
   padding: 0.125rem 0.625rem;
   border-radius: var(--raio-pilula);
   font-size: var(--txt-aux);
-  font-weight: 500;
+  font-weight: 700;
   background: var(--informativo-fundo);
   color: var(--informativo-texto);
 }
@@ -652,10 +588,12 @@ main {
   padding: 0.125rem 0.625rem;
   border-radius: var(--raio-pilula);
   font-size: var(--txt-aux);
-  font-weight: 500;
+  font-weight: 700;
   background: var(--cinza-borda);
   color: var(--cinza-texto);
 }
+
+/*PAGINAS SEPARADAS*/
 
 /* LOGIN / CADASTRO */
 .pagina-auth {
@@ -770,7 +708,7 @@ main {
 }
 
 .auth-aba.ativa {
-  background-color: var(--marca-clara);
+  background-color: var(--marca-media);
   color: var(--branco);
   font-weight: 700;
 }
@@ -796,7 +734,9 @@ main {
   border-radius: var(--raio-padrao);
   color: var(--branco);
   font-size: var(--txt-base);
-  transition: border-color 0.2s;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
 }
 
 .campo-input::placeholder {
@@ -817,7 +757,7 @@ main {
 .btn-auth {
   width: 100%;
   padding: 14px;
-  background-color: var(--marca-clara);
+  background-color: var(--marca-media);
   color: var(--branco);
   border-radius: var(--raio-padrao);
   font-weight: 700;
@@ -827,7 +767,7 @@ main {
 }
 
 .btn-auth:hover {
-  background-color: var(--marca-hover-auth);
+  background-color: var(--marca-escura-hover);
 }
 
 .btn-auth:disabled {
@@ -857,8 +797,14 @@ main {
   min-height: 20px;
   text-align: center;
 }
+/* FIM LOGIN */
 
 /* DASHBOARD */
+.btn-novo {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .resumo-grade-3 {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -881,7 +827,7 @@ main {
   font-size: 1.2rem;
 }
 
-/* Ícones do feed de "Atividade Recente"*/
+/* Ícones de "Atividade Recente"*/
 .atividade-icone .fa-user-plus {
   color: var(--marca-clara);
 }
@@ -903,6 +849,7 @@ main {
   margin: 0;
   text-align: center;
 }
+/* FIM DASHBOARD */
 
 /* CLIENTES */
 .coluna-acoes {
@@ -942,10 +889,29 @@ main {
   color: var(--cinza-texto);
   margin-top: 15px;
 }
+/* FIM CLIENTES */
 
 /* SERVIÇOS */
 .resumo-grade-4 {
   grid-template-columns: repeat(4, 1fr);
+}
+
+.resumo-grade-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+/* Card de resumo que também funciona como atalho/filtro (ex: card de
+   Inadimplentes em Clientes, card de Atrasados em Serviços) */
+.resumo-cartao-clicavel {
+  cursor: pointer;
+  transition:
+    box-shadow 0.15s,
+    transform 0.15s;
+}
+
+.resumo-cartao-clicavel:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
 }
 
 .status-servico {
@@ -970,15 +936,16 @@ main {
   background: var(--negativo-fundo);
   color: var(--negativo-texto);
 }
+/* FIM SERVIÇOS */
 
 /* FINANCEIRO */
 .painel-despesa {
   background: var(--branco);
-  border: 1px solid var(--marca-borda-suave);
   border-radius: var(--raio-card);
   padding: 1.25rem;
   margin-bottom: 1.5rem;
 }
+/* FIM FINANCEIRO */
 
 /* RELATÓRIOS */
 .chart-loading {
@@ -1097,6 +1064,35 @@ main {
   justify-content: space-between;
   padding: 0.75rem 1.25rem;
   border-bottom: 1px solid var(--cinza-borda);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.cli-row:hover {
+  background-color: var(--marca-linha-hover);
+}
+
+/* Chip mostrando qual cliente está filtrando o relatório */
+.chip-filtro {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--informativo-fundo);
+  color: var(--informativo-texto);
+  padding: 0.5rem 1rem;
+  border-radius: var(--raio-pilula);
+  font-size: var(--txt-aux);
+  margin-bottom: 1.25rem;
+}
+
+.chip-filtro-fechar {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-size: var(--txt-aux);
+  line-height: 1;
+  padding: 0;
 }
 
 .cli-left {
@@ -1143,12 +1139,14 @@ main {
 .font-bold {
   font-weight: 700;
 }
+/*FIM RELATÓRIOS */
 
 /* RESPONSIVIDADE */
 
 /* TABLET (até 1024px) */
 @media (max-width: 1024px) {
-  .resumo-grade-4 {
+  .resumo-grade-4,
+  .resumo-grade-5 {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1190,6 +1188,7 @@ main {
   .resumo-grade,
   .resumo-grade-3,
   .resumo-grade-4,
+  .resumo-grade-5,
   .dashboard-conteudo {
     grid-template-columns: 1fr;
     width: 100%;
@@ -1237,7 +1236,7 @@ main {
 }
 
 /* IMPRESSÃO / "BAIXAR PDF" */
-/* Usa a função de imprimir do navegador — sem biblioteca externa. */
+/* Usa a função de imprimir do navegador.*/
 .print-only {
   display: none;
 }
@@ -1262,7 +1261,7 @@ main {
     background: var(--branco);
   }
 
-  .wrap {
+  main {
     max-width: 100%;
     padding: 0;
   }

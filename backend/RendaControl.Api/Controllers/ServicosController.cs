@@ -70,8 +70,6 @@ public class ServicosController : ApiControllerBase
         return NoContent();
     }
 
-    // Garante Kind=Utc (exigido pelo Npgsql) e preenche DataFim com
-    // DataInicio quando o serviço é de um dia só.
     private static void NormalizarDatas(Servico servico)
     {
         if (servico.DataInicio.HasValue)

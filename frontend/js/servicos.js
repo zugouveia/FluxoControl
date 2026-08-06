@@ -20,7 +20,7 @@ const btnRegistrar = document.getElementById("btn-registrar");
 let todosServicos = [];
 let servicoEditandoId = null;
 
-// Formata a data (ou período) do serviço pra exibir na tabela
+// Formata a data (ou periodo) do serviço pra exibir na tabela
 function formatarPeriodoServico(servico) {
   if (!servico.dataInicio) return "—";
 
@@ -68,6 +68,10 @@ function atualizarCards(servicos) {
     return s.status === "Pago";
   }).length;
 
+  const atrasados = servicos.filter(function (s) {
+    return s.status === "Atrasado";
+  }).length;
+
   let taxa;
   if (total > 0) {
     taxa = Math.round((pagos / total) * 100);
@@ -87,6 +91,8 @@ function atualizarCards(servicos) {
   document.getElementById("taxa-pagamento").textContent = taxa + "%";
   document.getElementById("detalhe-pagamento").textContent =
     pagos + " de " + total + " pagos";
+
+  document.getElementById("total-atrasados").textContent = atrasados;
 }
 
 //RENDERIZAR TABELA
@@ -262,7 +268,7 @@ function preencherFormServico(servico) {
   formServico.scrollIntoView({ behavior: "smooth" });
 }
 
-//RESETAR FORMULÁRIO
+//RESETAR FORMULARIO
 function resetarFormServico() {
   servicoEditandoId = null;
   tituloForm.textContent = "REGISTRAR NOVO SERVIÇO";
@@ -316,6 +322,12 @@ async function atualizarStatusServico(id, novoStatus) {
 }
 
 //FILTRO
+document.getElementById("card-atrasados").addEventListener("click", function () {
+  filtroStatus.value = "Atrasado";
+  filtroStatus.dispatchEvent(new Event("change"));
+  document.querySelector(".tabela-container").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
 filtroStatus.addEventListener("change", function () {
   const filtro = filtroStatus.value;
 

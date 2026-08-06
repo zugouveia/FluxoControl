@@ -12,6 +12,7 @@
 
 <body>
   <div class="app-shell">
+    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-logo"><strong>Fluxo</strong><span>Control</span></div>
       <nav class="sidebar-nav">
@@ -24,22 +25,44 @@
       <button class="botao-logout">LOGOUT</button>
     </aside>
 
-    <div class="wrap">
+    <!-- CONTEUDO PRINCIPAL -->
+    <main class="dashboard">
       <div class="dashboard-topo">
         <div>
           <h1 class="pagina-titulo">Relatórios</h1>
-          <p class="pagina-subtitulo">Visão anual do seu negócio</p>
+          <p class="pagina-subtitulo">Visão do seu negócio</p>
           <p id="print-periodo" class="print-only"></p>
         </div>
         <div class="toolbar no-print">
           <select id="filtro-ano" class="campo-select"></select>
-          <button type="button" id="btn-baixar-pdf" class="btn-ghost">Baixar PDF ⬇ </button>
+          <select id="filtro-mes" class="campo-select">
+            <option value="">Ano inteiro</option>
+            <option value="1">Janeiro</option>
+            <option value="2">Fevereiro</option>
+            <option value="3">Março</option>
+            <option value="4">Abril</option>
+            <option value="5">Maio</option>
+            <option value="6">Junho</option>
+            <option value="7">Julho</option>
+            <option value="8">Agosto</option>
+            <option value="9">Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dezembro</option>
+          </select>
+          <button type="button" class="btn-primary" id="btn-baixar-pdf" class="btn-ghost">Baixar PDF</button>
         </div>
+      </div>
+
+      <!-- Quando você seleciona um cliente para mostrar apenas os serviços dele. -->
+      <div id="chip-cliente" class="chip-filtro hidden">
+        Mostrando apenas: <strong id="chip-cliente-nome"></strong>
+        <button type="button" id="btn-limpar-cliente" class="chip-filtro-fechar" aria-label="Remover filtro">✕</button>
       </div>
 
       <div id="erro" class="alert-err hidden"></div>
 
-      <section class="resumo-grade resumo-grade-4">
+      <section id="secao-ano" class="resumo-grade resumo-grade-4">
         <div class="resumo-cartao">
           <p class="resumo-label">Receita total</p>
           <span id="sum-rec" class="resumo-valor valor-positivo">—</span>
@@ -58,7 +81,26 @@
         </div>
       </section>
 
-      <div class="painel">
+      <section id="secao-cliente" class="resumo-grade resumo-grade-4 hidden">
+        <div class="resumo-cartao">
+          <p class="resumo-label">Recebido no período</p>
+          <span id="cli-total-recebido" class="resumo-valor valor-positivo">—</span>
+        </div>
+        <div class="resumo-cartao">
+          <p class="resumo-label">Serviços realizados</p>
+          <span id="cli-total-servicos" class="resumo-valor">—</span>
+        </div>
+        <div class="resumo-cartao">
+          <p class="resumo-label">Ticket médio</p>
+          <span id="cli-ticket-medio" class="resumo-valor">—</span>
+        </div>
+        <div class="resumo-cartao">
+          <p class="resumo-label">Pendente</p>
+          <span id="cli-pendente" class="resumo-valor valor-alerta">—</span>
+        </div>
+      </section>
+
+      <div id="painel-grafico" class="painel">
         <div class="painel-header">
           <h2 class="painel-title">Receita x despesa por mês</h2>
           <div class="chart-legenda">
@@ -70,10 +112,10 @@
         <div id="chart-bars" class="chart-bars hidden"></div>
       </div>
 
-      <div class="grid-2">
+      <div id="grid-ano" class="grid-2">
         <div class="painel">
           <div class="painel-header">
-            <h2 class="painel-title">Resumo mensal</h2>
+            <h2 class="painel-title" id="titulo-resumo-mensal">Resumo mensal</h2>
           </div>
           <div class="tabela-container">
             <table id="tbl-meses" class="tabela-clientes">
@@ -91,13 +133,33 @@
         </div>
         <div class="painel">
           <div class="painel-header">
-            <h2 class="painel-title">Top clientes</h2>
+            <h2 class="painel-title">Seus clientes</h2>
           </div>
           <div id="lista-clientes"></div>
         </div>
       </div>
-    </div>
+
+      <div id="painel-servicos-cliente" class="painel hidden">
+        <div class="painel-header">
+          <h2 class="painel-title">Serviços de <span id="titulo-cliente-servicos"></span></h2>
+        </div>
+        <div class="tabela-container">
+          <table id="tbl-servicos-cliente" class="tabela-clientes">
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Evento</th>
+                <th>Data</th>
+                <th class="td-right">Valor</th>
+                <th class="td-center">Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
   </div>
+  </main>
 
   <script src="js/core.js"></script>
   <script src="js/relatorios.js"></script>

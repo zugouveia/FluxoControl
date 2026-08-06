@@ -124,7 +124,7 @@ function renderizarGraficoDespesas(despesas) {
   });
 }
 
-//PRÓXIMOS SERVIÇOS — a partir de hoje, pela Data Início
+//PROXIMOS SERVIÇOS — a partir de hoje, pela Data Inicio
 function renderizarProximosServicos(servicos) {
   const container = document.getElementById("proximos-servicos");
   const hoje = new Date();
@@ -174,7 +174,7 @@ function renderizarProximosServicos(servicos) {
     .join("");
 }
 
-//CARDS — tudo vem já calculado pro mês atual pela API de financeiro
+//CARDS — tudo vem ja calculado pro mes atual pela API de financeiro
 function atualizarCards(dadosFinanceiro) {
   const totalDespesas = dadosFinanceiro.totalDespesas || 0;
   const receita = dadosFinanceiro.receita || 0;

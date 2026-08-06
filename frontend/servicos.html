@@ -13,6 +13,7 @@
 <body>
 
   <div class="app-shell">
+    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-logo"><strong>Fluxo</strong><span>Control</span></div>
       <nav class="sidebar-nav">
@@ -25,6 +26,7 @@
       <button class="botao-logout">LOGOUT</button>
     </aside>
 
+    <!-- CONTEUDO PRINCIPAL -->
     <main class="dashboard">
       <div class="dashboard-topo">
         <div>
@@ -34,26 +36,31 @@
       </div>
 
       <!-- Cards de resumo -->
-      <section class="resumo-grade resumo-grade-4">
+      <section class="resumo-grade resumo-grade-5">
         <div class="resumo-cartao">
           <p class="resumo-label">Serviços no Mês</p>
-          <span class="resumo-valor" id="total-servicos">--</span>
-          <span class="resumo-detalhe" id="detalhe-andamento">--</span>
+          <span class="resumo-valor" id="total-servicos">—</span>
+          <span class="resumo-detalhe" id="detalhe-andamento"></span>
         </div>
         <div class="resumo-cartao">
           <p class="resumo-label">Receita Gerada</p>
-          <span class="resumo-valor valor-positivo" id="total-receita">--</span>
+          <span class="resumo-valor valor-positivo" id="total-receita">—</span>
           <span class="resumo-detalhe">Total de serviços</span>
         </div>
         <div class="resumo-cartao">
           <p class="resumo-label">Ticket Médio</p>
-          <span class="resumo-valor" id="ticket-medio">--</span>
+          <span class="resumo-valor" id="ticket-medio">—</span>
           <span class="resumo-detalhe">Por serviço</span>
         </div>
         <div class="resumo-cartao">
           <p class="resumo-label">Taxa de Pagamento</p>
-          <span class="resumo-valor valor-positivo" id="taxa-pagamento">--</span>
-          <span class="resumo-detalhe" id="detalhe-pagamento">--</span>
+          <span class="resumo-valor valor-positivo" id="taxa-pagamento">—</span>
+          <span class="resumo-detalhe" id="detalhe-pagamento">—</span>
+        </div>
+        <div class="resumo-cartao resumo-cartao-clicavel" id="card-atrasados">
+          <p class="resumo-label">Serviços Atrasados</p>
+          <span class="resumo-valor valor-negativo" id="total-atrasados">—</span>
+          <span class="resumo-detalhe">Clique para ver</span>
         </div>
       </section>
 
