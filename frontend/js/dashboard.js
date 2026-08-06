@@ -215,7 +215,7 @@ function atualizarCards(dadosFinanceiro) {
   document.getElementById("card-pendentes").textContent =
     formatarMoeda(pendente);
   document.getElementById("card-pendentes-detalhe").textContent =
-    clientesPendentes + " cliente(s) pendentes";
+    clientesPendentes + " cliente(s) pendente(s)";
 }
 
 //Clicar nos cards vai para a pagina do local
@@ -226,13 +226,6 @@ document
   .addEventListener("click", function () {
     window.location.href = "financeiro.html";
   });
-
-//pendentes
-/*document
-  .getElementById("card-pendentes-container")
-  .addEventListener("click", function () {
-    window.location.href = "servicos.html";
-  });*/
 
 document
   .getElementById("card-pendentes-container")
