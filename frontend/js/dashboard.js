@@ -6,6 +6,18 @@ document.querySelector(".botao-logout").addEventListener("click", function () {
   window.location.href = "index.html";
 });
 
+const erroEl = document.getElementById("erro");
+
+function mostrarErro(erro) {
+  erroEl.textContent = erro.message || "Erro ao carregar.";
+  erroEl.classList.remove("hidden");
+}
+
+function limparErro() {
+  erroEl.textContent = "";
+  erroEl.classList.add("hidden");
+}
+
 //DIA/TARDE/NOITE
 function definirSaudacao() {
   const hora = new Date().getHours();
@@ -40,6 +52,7 @@ function definirSaudacao() {
 
 //CARREGAR DADOS
 async function carregarDados() {
+  limparErro();
   try {
     const [servicos, clientes, dadosFinanceiro] = await Promise.all([
       chamarApi("/api/servicos"),
@@ -53,7 +66,7 @@ async function carregarDados() {
     renderizarServicosRecentes(servicos);
     renderizarAtividade(servicos, clientes, dadosFinanceiro.despesas || []);
   } catch (e) {
-    console.error("Erro ao carregar o dashboard:", e);
+    mostrarErro(e);
   }
 }
 

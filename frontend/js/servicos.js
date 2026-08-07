@@ -9,6 +9,7 @@ document.querySelector(".botao-logout").addEventListener("click", function () {
 const CAMINHO_SERVICOS = "/api/servicos";
 const CAMINHO_CLIENTES = "/api/clientes";
 
+const erroEl = document.getElementById("erro");
 const formServico = document.getElementById("form-servico");
 const tabelaServicosBody = document.getElementById("tabela-servicos-body");
 const selectCliente = document.getElementById("select-cliente");
@@ -19,6 +20,16 @@ const btnRegistrar = document.getElementById("btn-registrar");
 
 let todosServicos = [];
 let servicoEditandoId = null;
+
+function mostrarErro(erro) {
+  erroEl.textContent = erro.message || "Erro ao carregar.";
+  erroEl.classList.remove("hidden");
+}
+
+function limparErro() {
+  erroEl.textContent = "";
+  erroEl.classList.add("hidden");
+}
 
 // Formata a data (ou periodo) do serviço pra exibir na tabela
 function formatarPeriodoServico(servico) {
@@ -42,22 +53,31 @@ function formatarPeriodoServico(servico) {
 
 //CARREGAR CLIENTES NO SELECT
 async function carregarClientesSelect() {
-  const clientes = await chamarApi(CAMINHO_CLIENTES);
-  selectCliente.innerHTML = '<option value="">Selecione um cliente</option>';
+  try {
+    const clientes = await chamarApi(CAMINHO_CLIENTES);
+    selectCliente.innerHTML = '<option value="">Selecione um cliente</option>';
 
-  clientes.forEach(function (cliente) {
-    const option = document.createElement("option");
-    option.value = cliente.id;
-    option.textContent = cliente.nome;
-    selectCliente.appendChild(option);
-  });
+    clientes.forEach(function (cliente) {
+      const option = document.createElement("option");
+      option.value = cliente.id;
+      option.textContent = cliente.nome;
+      selectCliente.appendChild(option);
+    });
+  } catch (e) {
+    mostrarErro(e);
+  }
 }
 
 //CARREGAR SERVIÇOS
 async function carregarServicos() {
-  todosServicos = await chamarApi(CAMINHO_SERVICOS);
-  atualizarCards(todosServicos);
-  renderizarServicos(todosServicos);
+  limparErro();
+  try {
+    todosServicos = await chamarApi(CAMINHO_SERVICOS);
+    atualizarCards(todosServicos);
+    renderizarServicos(todosServicos);
+  } catch (e) {
+    mostrarErro(e);
+  }
 }
 
 //CARDS
@@ -213,10 +233,15 @@ function renderizarServicos(servicos) {
   document.querySelectorAll(".btn-deletar-servico").forEach(function (btn) {
     btn.addEventListener("click", async function () {
       if (!confirm("Tem certeza que deseja excluir este serviço?")) return;
-      await chamarApi(CAMINHO_SERVICOS + "/" + btn.dataset.id, {
-        method: "DELETE",
-      });
-      carregarServicos();
+
+      try {
+        await chamarApi(CAMINHO_SERVICOS + "/" + btn.dataset.id, {
+          method: "DELETE",
+        });
+        carregarServicos();
+      } catch (e) {
+        mostrarErro(e);
+      }
     });
   });
 }
@@ -287,6 +312,7 @@ function resetarFormServico() {
 //SALVAR / ATUALIZAR SERVIÇO
 formServico.addEventListener("submit", async function (evento) {
   evento.preventDefault();
+  limparErro();
 
   const dataInicio = document.getElementById("input-data-inicio").value || null;
   const dataFim = document.getElementById("input-data-fim").value || null;
@@ -302,31 +328,39 @@ formServico.addEventListener("submit", async function (evento) {
     status: document.getElementById("select-status").value,
   };
 
-  if (servicoEditandoId) {
-    dados.id = servicoEditandoId;
-    await chamarApi(CAMINHO_SERVICOS + "/" + servicoEditandoId, {
-      method: "PUT",
-      body: JSON.stringify(dados),
-    });
-  } else {
-    await chamarApi(CAMINHO_SERVICOS, {
-      method: "POST",
-      body: JSON.stringify(dados),
-    });
-  }
+  try {
+    if (servicoEditandoId) {
+      dados.id = servicoEditandoId;
+      await chamarApi(CAMINHO_SERVICOS + "/" + servicoEditandoId, {
+        method: "PUT",
+        body: JSON.stringify(dados),
+      });
+    } else {
+      await chamarApi(CAMINHO_SERVICOS, {
+        method: "POST",
+        body: JSON.stringify(dados),
+      });
+    }
 
-  resetarFormServico();
-  carregarServicos();
+    resetarFormServico();
+    carregarServicos();
+  } catch (e) {
+    mostrarErro(e);
+  }
 });
 
 //ATUALIZAR STATUS
 async function atualizarStatusServico(id, novoStatus) {
-  const servico = await chamarApi(CAMINHO_SERVICOS + "/" + id);
-  servico.status = novoStatus;
-  await chamarApi(CAMINHO_SERVICOS + "/" + id, {
-    method: "PUT",
-    body: JSON.stringify(servico),
-  });
+  try {
+    const servico = await chamarApi(CAMINHO_SERVICOS + "/" + id);
+    servico.status = novoStatus;
+    await chamarApi(CAMINHO_SERVICOS + "/" + id, {
+      method: "PUT",
+      body: JSON.stringify(servico),
+    });
+  } catch (e) {
+    mostrarErro(e);
+  }
 }
 
 //FILTRO
