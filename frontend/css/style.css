@@ -423,9 +423,9 @@ main {
 }
 
 .alert-err {
-  background: var(--erro-fundo);
-  border: 1px solid var(--erro-borda);
-  color: var(--erro-texto);
+  background: var(--negativo-fundo);
+  border: 1px solid var(--negativo-destaque);
+  color: var(--negativo-texto);
   border-radius: var(--raio-padrao);
   padding: 0.75rem 1rem;
   font-size: var(--txt-base);
@@ -791,7 +791,7 @@ main {
 }
 
 .auth-erro {
-  color: var(--erro-suave);
+  color: var(--negativo-destaque);
   font-size: var(--txt-aux);
   margin-bottom: 12px;
   min-height: 20px;
@@ -1072,7 +1072,7 @@ main {
   background-color: var(--marca-linha-hover);
 }
 
-/* Chip mostrando qual cliente está filtrando o relatório */
+/* Qual cliente está filtrando o relatório */
 .chip-filtro {
   display: inline-flex;
   align-items: center;
@@ -1088,7 +1088,6 @@ main {
 .chip-filtro-fechar {
   background: none;
   border: none;
-  cursor: pointer;
   color: inherit;
   font-size: var(--txt-aux);
   line-height: 1;
@@ -1142,7 +1141,6 @@ main {
 /*FIM RELATÓRIOS */
 
 /* RESPONSIVIDADE */
-
 /* TABLET (até 1024px) */
 @media (max-width: 1024px) {
   .resumo-grade-4,

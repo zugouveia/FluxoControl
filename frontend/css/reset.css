@@ -40,12 +40,6 @@
   --informativo-fundo: #dbeafe;
   --informativo-destaque: #3498db;
 
-  /* Erro de formulário (próprio, separado do vermelho de status) */
-  --erro-texto: #dc2626;
-  --erro-fundo: #fef2f2;
-  --erro-borda: #fecaca;
-  --erro-suave: #f87171; /* texto de erro sobre fundo escuro (login) */
-
   /* Tipografia */
   --txt-micro: 0.625rem; /* legendas do gráfico */
   --txt-rotulo: 0.7rem; /* rótulo em maiúsculo: cabeçalho de tabela, label de card/campo */
