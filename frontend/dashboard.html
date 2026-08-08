@@ -26,8 +26,9 @@
       <button class="botao-logout">LOGOUT</button>
     </aside>
 
-    <main class="dashboard">
-      <div class="dashboard-topo">
+
+    <main class="conteudo-principal">
+      <div class="pagina-topo">
         <div>
           <h1 class="pagina-titulo" id="saudacao">Bom dia!</h1>
           <p class="pagina-subtitulo" id="subtitulo-data">Resumo financeiro</p>
@@ -59,7 +60,7 @@
         </div>
       </section>
 
-      <section class="dashboard-conteudo">
+      <div class="grid-2">
 
         <!-- Despesas por categoria -->
         <div class="painel">
@@ -81,32 +82,28 @@
           <div id="proximos-servicos"></div>
         </div>
 
-      </section>
+      </div>
 
-      <section class="dashboard-conteudo">
-
-        <!-- Serviços recentes -->
-        <div class="painel painel-largo">
-          <div class="painel-header">
-            <h2 class="painel-title">Serviços Recentes</h2>
-          </div>
-          <div class="tabela-container">
-            <table class="tabela-clientes">
-              <thead>
-                <tr>
-                  <th>Cliente</th>
-                  <th>Serviço</th>
-                  <th>Valor</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody id="tabela-servicos-recentes">
-              </tbody>
-            </table>
-          </div>
+      <!-- Serviços recentes -->
+      <div class="painel painel-largo">
+        <div class="painel-header">
+          <h2 class="painel-title">Serviços Recentes</h2>
         </div>
-
-      </section>
+        <div class="tabela-container">
+          <table class="tabela-clientes">
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Serviço</th>
+                <th>Valor</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-servicos-recentes">
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <!-- Atividade recente -->
       <div class="painel">
@@ -120,7 +117,6 @@
   </div>
 
   <script src="js/core.js"></script>
-  <!-- <script src="js/servicos.js"></script> -->
   <script src="js/dashboard.js"></script>
 </body>
 

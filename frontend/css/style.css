@@ -90,7 +90,7 @@ main {
   padding: 40px;
 }
 
-/* COMPONENTES COMPARTILHADOS (Painel, tabela, campos de formulário, botões e etiquetas de status usados em várias páginas)*/
+/* COMPONENTES COMPARTILHADOS (Painel, tabela, campos de formulário, botões e etiquetas de status usados em várias telas)*/
 
 /* Painel (card branco com título) */
 .painel {
@@ -116,13 +116,6 @@ main {
 
 .painel-largo {
   grid-column: 1 / -1;
-}
-
-.dashboard-conteudo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  align-items: start;
 }
 
 /* Tabela padrão (header cinza claro + linhas com hover)*/
@@ -241,7 +234,7 @@ main {
 }
 
 /* Cabeçalho de página (título + ações à direita) */
-.dashboard-topo {
+.pagina-topo {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -268,12 +261,6 @@ main {
   gap: 0.75rem;
   align-items: center;
   flex-wrap: wrap;
-}
-
-.rotulo-filtro {
-  font-size: var(--txt-aux);
-  color: var(--cinza-texto);
-  font-weight: 600;
 }
 
 .rotulo-filtro {
@@ -837,7 +824,7 @@ main {
 }
 
 .atividade-icone .fa-clipboard-check {
-  color: var(--informativo-texto);
+  color: var(--positivo-destaque);
 }
 
 .atividade-icone .fa-angles-down {
@@ -1148,10 +1135,6 @@ main {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .dashboard-conteudo {
-    grid-template-columns: 1fr;
-  }
-
   .campo-cheio {
     grid-column: span 1;
   }
@@ -1173,7 +1156,7 @@ main {
   }
 
   main,
-  main.dashboard {
+  main.conteudo-principal {
     padding: 0 12px;
   }
 
@@ -1187,12 +1170,12 @@ main {
   .resumo-grade-3,
   .resumo-grade-4,
   .resumo-grade-5,
-  .dashboard-conteudo {
+  .grid-2 {
     grid-template-columns: 1fr;
     width: 100%;
   }
 
-  .dashboard-topo {
+  .pagina-topo {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
